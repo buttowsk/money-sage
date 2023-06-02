@@ -42,4 +42,23 @@ export const GlobalStyles = createGlobalStyle`
     border: none;
     outline: none;
   }
+
+  *::-webkit-scrollbar {
+    width: 0.5rem;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: #04E566;
+    border-radius: 0.5rem;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background: #04E566;
+    border-radius: 0.5rem;
+  }
+
+  *::-webkit-scrollbar-thumb:hover {
+    background: #04E566;
+    opacity: 0.5;
+  }
 `;

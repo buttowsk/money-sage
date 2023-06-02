@@ -7,9 +7,10 @@ export const Container = styled.div`
   background-color: ${({theme}) => theme.background};
   color: ${({theme}) => theme.text};
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 4rem;
+  gap: 2rem;
 `;
 
 export const Logo = styled.img.attrs({
