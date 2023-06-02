@@ -6,7 +6,7 @@ import { GlobalStyles } from './styles/globalStyles.js';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <BrowserRouter basename={'/money-sage/'}>
+    <BrowserRouter basename={ '/money-sage/' }>
       <GlobalStyles/>
       <App/>
     </BrowserRouter>
