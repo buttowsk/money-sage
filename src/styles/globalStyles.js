@@ -48,12 +48,12 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   *::-webkit-scrollbar-track {
-    background: #04E566;
+    background: transparent;
     border-radius: 0.5rem;
   }
 
   *::-webkit-scrollbar-thumb {
-    background: #04E566;
+    background: transparent;
     border-radius: 0.5rem;
   }
 

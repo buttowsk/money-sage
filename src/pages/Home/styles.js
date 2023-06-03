@@ -8,6 +8,7 @@ export const Container = styled.div`
   color: ${({theme}) => theme.text};
   display: flex;
   align-items: flex-start;
+  flex-flow: row wrap;
   justify-content: space-between;
   padding: 4rem;
   gap: 2rem;
