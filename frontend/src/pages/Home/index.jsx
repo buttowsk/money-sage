@@ -1,7 +1,7 @@
 import { CardTest, Container, Logo, CardTextLarge } from './styles.js';
 import { ProfileCard } from '../../components/ProfileCard/index.jsx';
 import { ExpensesTable } from '../../components/ExpensesTable/index.jsx';
-import { Chart } from '../../components/Chart';
+import { Chart } from '../../components/Chart/index.jsx';
 
 export const Home = () => {
   return (
