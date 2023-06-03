@@ -7,10 +7,11 @@ export const CardContainer = styled.div`
   gap: 2rem;
   flex-direction: column;
   align-items: start;
-  padding: 2rem 2rem 20rem 2rem;
-  width: 300px;
+  padding: 2rem;
   position: relative;
   border-radius: 12px;
+  grid-column: 2;
+  grid-row: 1;
 `;
 
 export const PersonContainer = styled.div`

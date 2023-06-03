@@ -5,15 +5,15 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: ${ ({ theme }) => theme.cardBackground };
   color: ${ ({ theme }) => theme.cardText };
   border-radius: 12px;
-  flex: 1 1 40%;
+  flex: 1 1 50%;
 `;
 
 export const CardHeader = styled.div`
   width: 100%;
   padding: 1rem;
+  background-color: ${ ({ theme }) => theme.cardBackground };
   display: flex;
   align-items: center;
   justify-content: ${ ({ isActive }) => !isActive ? 'space-between' : 'center' };
@@ -28,8 +28,6 @@ export const MoreIcon = styled(LuMoreVertical)`
   position: absolute;
   right: 1rem;
   top: 1rem;
-  
-  ${ ({ isActive }) => !isActive && 'display: none;' }
 `;
 
 export const ArrowDownIcon = styled(LuChevronDown)`
@@ -40,7 +38,6 @@ export const ArrowDownIcon = styled(LuChevronDown)`
   right: 1rem;
   top: 1rem;
   
-  ${ ({ isActive }) => isActive && 'display: none;' }
 `;
 
 export const ArrowUpIcon = styled(LuChevronUp)`
@@ -70,33 +67,34 @@ export const CardDate = styled.span`
 
 export const CardBody = styled.div`
   width: 100%;
-  display: flex;
+  background-color: ${ ({ theme }) => theme.cardBackground };
+  display: ${ ({ isActive }) => isActive ? 'flex' : 'none' };
   flex-direction: column;
   align-items: center;
   gap: 2rem;
   padding: 2rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
   position: relative;
-  animation: ${ ({ isActive }) => isActive ? 'slideIn' : 'slideOut' } 0.5s ease-in-out;
-  ${ ({ isActive }) => !isActive && 'display: none;' }
-  
-  
+  animation: ${ ({ isActive }) => isActive ? 'slideIn' : 'slideOut' } 0.5s ease-in-out forwards;
   
   @keyframes slideIn {
     from {
-      transform: translateY(-100%);
+      opacity: 0;
+      display: none;
     }
     to {
-      transform: translateY(0);
+      opacity: 1;
+      height: auto;
     }
   };
   
   @keyframes slideOut {
     from {
-      transform: translateY(0);
+      opacity: 1;
+      height: auto;
     }
     to {
-      transform: translateY(-100%);
+      display: none;
     }
   };
 `;

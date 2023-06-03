@@ -44,7 +44,7 @@ const CustomizedDot = (props) => {
 export const Chart = () => {
 
   return (
-    <ResponsiveContainer width="70%" height="50%" maxHeight='50%'>
+    <ResponsiveContainer width="100%" height="100%">
       <LineChart
         width={100}
         height={100}
@@ -56,7 +56,7 @@ export const Chart = () => {
           bottom: 5,
         }}
       >
-        <CartesianGrid strokeDasharray="3 3" />
+        <CartesianGrid strokeDasharray="3 3" stroke={"#1D272F"} />
         <XAxis dataKey="tag" />
         <YAxis />
         <Tooltip />

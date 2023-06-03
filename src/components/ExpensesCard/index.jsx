@@ -16,7 +16,7 @@ import {
 import { useState } from 'react';
 
 export const ExpensesCard = () => {
-  const [ isActive, setIsActive ] = useState(false);
+  const [isActive, setIsActive] = useState(false);
 
   const handleCardClick = () => {
     setIsActive(!isActive);
@@ -25,10 +25,10 @@ export const ExpensesCard = () => {
   return (<Container>
     <CardHeader>
       <CardTitle>Cinema</CardTitle>
-      <ArrowDownIcon isActive={isActive} onClick={handleCardClick}/>
-      <MoreIcon isActive={isActive}/>
+      { !isActive && <ArrowDownIcon isActive={ isActive } onClick={ handleCardClick }/> }
+      { isActive && <MoreIcon isActive={ isActive }/> }
     </CardHeader>
-    <CardBody isActive={isActive}>
+    <CardBody isActive={ isActive }>
       <CardBodyRow>
         <CardRowLabel>Amout</CardRowLabel>
         <CardRowValue>30,00</CardRowValue>
@@ -54,7 +54,7 @@ export const ExpensesCard = () => {
         <CardRowValue>1.000,00 BRL</CardRowValue>
       </CardBodyRow>
       <CardDate>31/01/2021</CardDate>
-      <ArrowUpIcon onClick={handleCardClick}/>
+      <ArrowUpIcon onClick={ handleCardClick }/>
     </CardBody>
   </Container>);
 };

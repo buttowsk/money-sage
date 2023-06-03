@@ -1,17 +1,16 @@
 import styled from 'styled-components';
 
 export const TableContainer = styled.div`
+  grid-column: 1;
+  grid-row: 1;
   display: flex;
   flex-flow: row wrap;
-  max-height: 50%;
   gap: 2rem;
-  padding: 2rem 2rem 13rem 2rem;
+  padding: 2rem;
   border-radius: 12px;
   background-color: ${({theme}) => theme.cardBackground};
   color: ${({theme}) => theme.cardText};
   overflow: auto;
-  flex: 1 1 50%;
-  
 `;
 
 export const Title = styled.h2`
