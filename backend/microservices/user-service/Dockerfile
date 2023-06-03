@@ -1,10 +1,8 @@
 FROM python:3.11
 
-FROM python:3.11
-
 ENV PYTHONUNBUFFERED=1
 
-WORKDIR /djangoService
+WORKDIR /user-service
 
 RUN python -m venv /venv
 
@@ -14,7 +12,7 @@ COPY requirements.txt requirements.txt
 
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY ../../../.. .
+COPY . .
 
 EXPOSE 8000
 

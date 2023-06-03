@@ -1,17 +1,30 @@
 version: '3.8'
 
 services:
-
-  notification-serive:
-    build: ../microservices/notification-service
+  gateway:
+    build: ../gateway
     ports:
-      - "8001:8001"
+      - "8080:8080"
     expose:
-      - "8001"
-    env_file:
-      - ../microservices/notification-service/.env
+      - "8080"
     depends_on:
-      - db
+      #- notification-serive
+      - user-service
+    networks:
+      - moneysage-network
+
+    #notification-serive:
+    # build: ../microservices/notification-service
+    #  ports:
+    #    - "8001:8001"
+    #  expose:
+    #    - "8001"
+    #env_file:
+    #  - ../microservices/notification-service/.env
+  #  depends_on:
+  #     - db
+  #  networks:
+  #    - moneysage-network
 
   user-service:
     build: ../microservices/user-service
@@ -23,6 +36,8 @@ services:
       - ../microservices/user-service/.env
     depends_on:
       - db
+    networks:
+      - moneysage-network
 
   db:
     image: postgres:12.2-alpine
@@ -34,5 +49,15 @@ services:
       - POSTGRES_PASSWORD=moneysage
     volumes:
       - postgres_data:/var/lib/postgresql/data/
+    networks:
+      - moneysage-network
+
+networks:
+  moneysage-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.16.0.0/24
+
 volumes:
-    postgres_data:
+  postgres_data:
