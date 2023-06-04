@@ -1,5 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
-import { Home } from '../pages/index.js';
+import { Home, Authentication } from '../pages';
 import { ThemeProvider } from 'styled-components';
 import { themes } from '../styles/themes.js';
 
@@ -8,6 +8,7 @@ function App() {
     <ThemeProvider theme={ themes.colors }>
       <Routes>
         <Route path="/" element={ <Home/> }/>
+        <Route path="/authentication" element={ <Authentication/> }/>
       </Routes>
     </ThemeProvider>
   );

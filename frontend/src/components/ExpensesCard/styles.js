@@ -5,7 +5,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: ${ ({ theme }) => theme.cardText };
+  color: ${ ({ theme }) => theme.text };
   border-radius: 12px;
   flex: 1 1 50%;
 `;
@@ -16,7 +16,7 @@ export const CardHeader = styled.div`
   background-color: ${ ({ theme }) => theme.cardBackground };
   display: flex;
   align-items: center;
-  justify-content: ${ ({ isActive }) => !isActive ? 'space-between' : 'center' };
+  justify-content: ${ ({ active }) => !active ? 'space-between' : 'center' };
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
   position: relative;
 `;
@@ -68,14 +68,14 @@ export const CardDate = styled.span`
 export const CardBody = styled.div`
   width: 100%;
   background-color: ${ ({ theme }) => theme.cardBackground };
-  display: ${ ({ isActive }) => isActive ? 'flex' : 'none' };
+  display: ${ ({ active }) => active ? 'flex' : 'none' };
   flex-direction: column;
   align-items: center;
   gap: 2rem;
   padding: 2rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
   position: relative;
-  animation: ${ ({ isActive }) => isActive ? 'slideIn' : 'slideOut' } 0.5s ease-in-out forwards;
+  animation: ${ ({ active }) => active ? 'slideIn' : 'slideOut' } 0.5s ease-in-out forwards;
   
   @keyframes slideIn {
     from {

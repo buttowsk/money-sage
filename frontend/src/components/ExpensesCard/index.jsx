@@ -25,10 +25,10 @@ export const ExpensesCard = () => {
   return (<Container>
     <CardHeader>
       <CardTitle>Cinema</CardTitle>
-      { !isActive && <ArrowDownIcon isActive={ isActive } onClick={ handleCardClick }/> }
-      { isActive && <MoreIcon isActive={ isActive }/> }
+      { !isActive && <ArrowDownIcon active={ isActive ? isActive : undefined  } onClick={ handleCardClick }/> }
+      { isActive && <MoreIcon active={ isActive ? isActive : undefined  }/> }
     </CardHeader>
-    <CardBody isActive={ isActive }>
+    <CardBody active={ isActive ? isActive : undefined }>
       <CardBodyRow>
         <CardRowLabel>Amout</CardRowLabel>
         <CardRowValue>30,00</CardRowValue>

@@ -28,10 +28,14 @@ export const CardTest = styled.div`
   grid-row: 2;
   height: 100%;
   background-color: ${ ({ theme }) => theme.cardBackground };
-  color: ${ ({ theme }) => theme.cardText };
+  color: ${ ({ theme }) => theme.text };
 `;
 
 export const CardTextLarge = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
   width: 100%;
   max-height: 100%;
   border-radius: 12px;
@@ -39,6 +43,6 @@ export const CardTextLarge = styled.div`
   grid-column: 1;
   grid-row: 2;
   background-color: ${ ({ theme }) => theme.cardBackground };
-  color: ${ ({ theme }) => theme.cardText };
+  color: ${ ({ theme }) => theme.text };
 `;
 
