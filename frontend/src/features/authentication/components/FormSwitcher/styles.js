@@ -18,7 +18,7 @@ export const SwitcherContainer = styled.div`
     height: 100%;
     border-radius: 20px;
     background-color: rgb(117, 99, 176, 1);
-    border: 2px solid ${ ({ theme }) => theme.cardBackground };
+    border: 2px solid ${ ({ theme }) => theme.background };
     z-index: 1;
     position: absolute;
     top: 0;
