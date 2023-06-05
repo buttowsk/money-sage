@@ -2,47 +2,48 @@ import { Input } from '../../Input/index.jsx';
 import { SignUpButton, StyledSpan, SignUpFormContainer } from './styles.js';
 import { GoogleLoginButton } from '../../GoogleLoginButton/index.jsx';
 import { useSignUpForm } from '../../../hooks/index.js';
-import { backend } from '../../../../../../services/backend.js';
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+
 
 export const SignUpForm = () => {
+  const [userInfo, setUserInfo] = useState({});
   const form = useSignUpForm();
+  const navigate = useNavigate();
 
-  const onSubmit = async (data) => {
-    try {
-      await backend.post('/auth/login', data);
-      form.reset();
-    } catch (error) {
-      console.log(error);
-    }
+  const onSubmit = (data) => {
+    const userData = {...userInfo, ...data}
+    setUserInfo(userData)
+    console.log(userInfo)
   };
 
   return (
-    <SignUpFormContainer onSubmit={ form.handleSubmit(onSubmit) }>
+    <SignUpFormContainer onSubmit={form.handleSubmit(onSubmit)}>
       <Input
-        register={ form.register }
-        type={ 'text' }
+        register={form.register}
+        type={'text'}
         name="email"
         placeholder="Email"
         label="Email"
-        error={ form.errors.email?.message }
+        error={form.errors.email?.message}
       />
       <Input
-        register={ form.register }
-        type={ 'password' }
+        register={form.register}
+        type={'password'}
         name="password"
         placeholder="Password"
         label="Password"
-        error={ form.errors.password?.message }
+        error={form.errors.password?.message}
       />
       <Input
-        register={ form.register }
-        type={ 'password' }
+        register={form.register}
+        type={'password'}
         name="confirmPassword"
         placeholder="Confirm password"
         label="Confirm password"
-        error={ form.errors.confirmPassword?.message }
+        error={form.errors.confirmPassword?.message}
       />
-      <SignUpButton>Continuar</SignUpButton>
+      <SignUpButton type={'submit'}>Continuar</SignUpButton>
       <StyledSpan>Ou</StyledSpan>
       <GoogleLoginButton/>
     </SignUpFormContainer>
