@@ -7,10 +7,14 @@ spring:
   cloud:
     gateway:
       routes:
-        - id: user-service
+        - id: user-expenses
           uri: http://user-service:8000
           predicates:
             - Path=/expenses/**
+        - id: user-accounts
+          uri: http://user-service:8000
+          predicates:
+            - Path=/auth/**
         - id: notification-service
           uri: http://notification-service:8001
           predicates:
