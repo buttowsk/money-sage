@@ -1,18 +1,17 @@
 import { SignUpFormContainer, StyledSpan, SignUpButton } from '../SignUp/styles.js';
 import { Input } from '../../Input/index.jsx';
 import { useSignUpForm } from '../../../hooks/index.js';
-import { backend } from '../../../../../../services/backend.js';
+import { useLocation } from 'react-router-dom';
 
 export const SignUpExtraInfoForm = () => {
   const form = useSignUpForm();
+  const location = useLocation();
+  const userInfo = location.state;
 
-  const onSubmit = async (data) => {
-    try {
-      await backend.post('/auth/login', data);
-      form.reset();
-    } catch (error) {
-      console.log(error);
-    }
+  console.log(userInfo)
+
+  const onSubmit = (data) => {
+   console.log(data)
   };
 
   return (
@@ -33,15 +32,7 @@ export const SignUpExtraInfoForm = () => {
         label="Last Name"
         error={form.errors.last_name?.message}
       />
-      <Input
-        register={form.register}
-        type={'text'}
-        name="phone_number"
-        placeholder="Phone Number"
-        label="Phone Number"
-        error={form.errors.phone_number?.message}
-      />
-      <SignUpButton>Confirmar Cadastro</SignUpButton>
+      <SignUpButton type={'submit'}>Confirmar Cadastro</SignUpButton>
     </SignUpFormContainer>
   );
 };

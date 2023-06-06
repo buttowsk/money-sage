@@ -14,7 +14,6 @@ export const Authentication = () => {
   const [form, setForm] = useState('signin');
   const { isAuthenticated } = useContext(AuthContext);
 
-
   if (isAuthenticated) {
     return <Navigate to="/"/>;
   }

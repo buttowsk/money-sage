@@ -14,7 +14,7 @@ export const SignUpForm = () => {
   const onSubmit = (data) => {
     const userData = {...userInfo, ...data}
     setUserInfo(userData)
-    console.log(userInfo)
+    navigate('/authentication/register-confirmation', { state: userData })
   };
 
   return (
