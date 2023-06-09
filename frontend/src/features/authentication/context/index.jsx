@@ -1,10 +1,10 @@
-import { createContext, useEffect, useState } from 'react';
-import { authAPI } from '../services/auth.js';
+import { createContext, useState } from 'react';
+import { authAPI, googleAuthAPI } from '../services/auth.js';
 
 export const AuthContext = createContext({});
 
 export const AuthProvider = ({ children }) => {
-  const [currentUser, setCurrentUser] = useState(null);
+  const [currentUser, setCurrentUser] = useState({});
   const [isAuthenticated, setIsAuthenticated] = useState(null);
   const [userCreated, setUserCreated] = useState(false);
 
@@ -13,41 +13,75 @@ export const AuthProvider = ({ children }) => {
     const accessToken = localStorage.getItem('accessToken');
     const refreshToken = localStorage.getItem('refreshToken');
     if (accessToken && refreshToken) {
-      const verify = await verifyJWT(accessToken);
-      if (verify) {
-        authAPI.defaults.headers['Authorization'] = `JWT ${ accessToken }`;
-        setIsAuthenticated(true);
-        await getCurrentUser();
-      } else {
-        setIsAuthenticated(false);
-      }
+      await verifyJWT(accessToken, refreshToken);
+      await getCurrentUser();
     } else {
       setIsAuthenticated(false);
     }
   };
 
-  const verifyJWT = async (jwt) => {
+  const verifyJWT = async (accessToken, refreshToken) => {
     try {
       const resp = await authAPI.post('/jwt/verify', {
-        token: jwt,
+        token: accessToken,
       });
       if (resp.status === 200) {
-        return true;
+        localStorage.setItem('accessToken', accessToken);
+        localStorage.setItem('refreshToken', refreshToken);
+        setIsAuthenticated(true);
+      } else {
+        setIsAuthenticated(false);
+        localStorage.removeItem('accessToken');
+        localStorage.removeItem('refreshToken');
       }
     } catch (err) {
-      return false;
+      console.log(err);
+      setIsAuthenticated(false);
+      localStorage.removeItem('accessToken');
+      localStorage.removeItem('refreshToken');
     }
   };
 
   const getCurrentUser = async () => {
-    try {
-      const resp = await authAPI.get('/users/me/');
-      if (resp.status === 200) {
-        const user = resp.data;
-        setCurrentUser(user);
+    if (localStorage.getItem('accessToken')) {
+      try {
+        const resp = await authAPI.get('/users/me/', {
+          headers: {
+            Authorization: `JWT ${ localStorage.getItem('accessToken') }`,
+          },
+        });
+        if (resp.status === 200) {
+          const user = resp.data;
+          setCurrentUser(user);
+        }
+      } catch (err) {
+        console.log(err);
       }
-    } catch (err) {
-      setCurrentUser(null);
+    }
+  };
+
+  const handleGoogleLogin = async (state, code) => {
+    if (state && code && !localStorage.getItem('access')) {
+
+      const body = new URLSearchParams();
+      body.append('state', state);
+      body.append('code', code);
+
+      try {
+        const resp = await googleAuthAPI.post(`/o/google-oauth2/?${ body.toString() }`);
+
+        if (resp.status === 201) {
+          console.log(resp.data);
+          const accessToken = resp.data.access;
+          const refreshToken = resp.data.refresh;
+          await verifyJWT(accessToken, refreshToken);
+          await getCurrentUser();
+          setIsAuthenticated(true);
+        }
+      } catch (error) {
+        setIsAuthenticated(false);
+        console.log(error);
+      }
     }
   };
 
@@ -57,21 +91,15 @@ export const AuthProvider = ({ children }) => {
       if (resp.status === 200) {
         const accessToken = resp.data.access;
         const refreshToken = resp.data.refresh;
-        const verify = await verifyJWT(accessToken);
-        if (verify) {
-          authAPI.defaults.headers['Authorization'] = `JWT ${ accessToken }`;
-          localStorage.setItem('accessToken', accessToken);
-          localStorage.setItem('refreshToken', refreshToken);
-          await getCurrentUser();
-          setIsAuthenticated(true);
-        } else {
-          setIsAuthenticated(false);
-          return 'Token inválido';
-        }
+        await verifyJWT(accessToken, refreshToken);
+        await getCurrentUser();
+      } else {
+        setIsAuthenticated(false);
+        return 'Token inválido';
       }
     } catch (err) {
+      console.log(err)
       setIsAuthenticated(false);
-      return 'Usuário ou senha inválidos';
     }
   };
 
@@ -86,12 +114,16 @@ export const AuthProvider = ({ children }) => {
       });
       if (resp.status === 201) {
         setUserCreated(true);
+        setTimeout(() => {
+          setUserCreated(false);
+        }, 3000);
         return 'Usuário criado com sucesso';
       } else {
         setUserCreated(false);
         return resp.data.code;
       }
     } catch (err) {
+      console.log(err)
       setUserCreated(false);
     }
   };
@@ -115,11 +147,9 @@ export const AuthProvider = ({ children }) => {
     handleLogin,
     handleRegister,
     handleLogout,
+    handleGoogleLogin,
+    verifyStorage,
   };
-
-  useEffect(() => {
-    verifyStorage();
-  }, []);
 
   return (
     <AuthContext.Provider value={ values }>

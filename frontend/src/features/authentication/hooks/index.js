@@ -1,7 +1,6 @@
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import { backend } from '../../../../services/backend.js';
 
 const SignInSchema = yup.object().shape({
   email: yup.string().email('Este email não é válido').required('Informe um email'),
@@ -10,8 +9,6 @@ const SignInSchema = yup.object().shape({
 
 
 const SignUpSchema = yup.object().shape({
-  first_name: yup.string().notRequired(),
-  last_name: yup.string().notRequired(),
   email: yup.string().email('Este email não é válido').required('Informe um email'),
   password: yup.string().required('Informe uma senha').min(6).max(20),
   confirmPassword: yup.string().oneOf([yup.ref('password'), null], 'As senhas não são iguais'),
@@ -32,7 +29,7 @@ export const useSignInForm = () => {
   });
 
 
-  return { register, watch, handleSubmit, errors };
+  return { register, watch, handleSubmit, errors, reset };
 };
 
 export const useSignUpForm = () => {
@@ -44,8 +41,6 @@ export const useSignUpForm = () => {
     resolver: yupResolver(SignUpSchema),
     mode: 'all',
     defaultValues: {
-      first_name: '',
-      last_name: '',
       email: '',
       password: '',
       confirmPassword: '',
@@ -53,5 +48,5 @@ export const useSignUpForm = () => {
   });
 
 
-  return { register, watch, handleSubmit, errors };
+  return { register, watch, handleSubmit, errors, reset };
 };

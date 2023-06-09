@@ -22,6 +22,7 @@ export const AuthenticationCard = styled.div`
   backdrop-filter: blur(10px);
   color: ${ ({ theme }) => theme.text };
   gap: 2.5rem;
+  position: relative;
 `;
 
 export const Logo = styled.img`
@@ -31,4 +32,15 @@ export const Logo = styled.img`
 
 export const Title = styled.h1`
   font-size: 2.5rem;
+`;
+
+export const UserCreated = styled.div`
+  font-size: 1.5rem;
+  color: ${ ({ theme }) => theme.text };
+  background-color: ${ ({ theme }) => theme.primary };
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+  position: absolute;
+  top: -8rem;
 `;
