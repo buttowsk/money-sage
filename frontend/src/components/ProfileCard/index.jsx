@@ -11,15 +11,23 @@ import {
 } from './styles.js';
 import logo from '../../assets/logo.png';
 import ReactCountryFlag from 'react-country-flag';
-
+import { useContext, useState } from 'react';
+import { AuthContext } from '../../features/authentication/context/index.jsx';
 
 export const ProfileCard = () => {
+  const { currentUser } = useContext(AuthContext);
+  const [open, setOpen] = useState(false);
+
+  const settings = () => {
+    setOpen(!open);
+  };
+
   return (
     <CardContainer>
-      <SettingsIcon/>
+      <SettingsIcon onClick={ settings }/>
       <PersonContainer>
         <Avatar src={ logo }/>
-        <Name>John Doe</Name>
+        <Name>{ currentUser?.first_name }</Name>
       </PersonContainer>
       <TotalExpensesContainer>
         <TotalExpensesLabel>Gastos totais</TotalExpensesLabel>

@@ -5,13 +5,6 @@ export const ExpensesTable = () => {
   return (
     <TableContainer>
       <ExpensesCard />
-      <ExpensesCard />
-      <ExpensesCard />
-      <ExpensesCard />
-      <ExpensesCard />
-      <ExpensesCard />
-      <ExpensesCard />
-      <ExpensesCard />
     </TableContainer>
   )
 }

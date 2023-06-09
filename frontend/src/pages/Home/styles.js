@@ -9,8 +9,8 @@ export const Container = styled.div`
   display: grid;
   grid-template-columns: repeat(1, 1fr) minmax(200px, 300px);
   grid-template-rows: 1fr 1fr;
-  padding: 4rem;
-  grid-gap: 3rem;
+  padding: 2rem;
+  grid-gap: 1rem;
 `;
 
 export const Logo = styled.img.attrs({

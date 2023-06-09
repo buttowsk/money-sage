@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import { LuSettings2 } from 'react-icons/lu'
+import { LuSettings2 } from 'react-icons/lu';
 export const CardContainer = styled.div`
   background-color: ${({theme}) => theme.cardBackground};
-  color: ${({theme}) => theme.cardText};
+  color: ${({theme}) => theme.text};
   display: flex;
   gap: 2rem;
   flex-direction: column;
@@ -34,7 +34,7 @@ export const SettingsIcon = styled(LuSettings2)`
 export const Avatar = styled.img`
   width: 5rem;
   border-radius: 50%;
-  background-color: ${({theme}) => theme.cardText};
+  background-color: ${({theme}) => theme.text};
 `;
 
 export const Name = styled.span`

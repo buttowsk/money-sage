@@ -1,24 +1,38 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import { Home, Authentication } from '../pages';
 import { ThemeProvider } from 'styled-components';
 import { themes } from '../styles/themes.js';
-import { AuthProvider } from '../features/authentication/context/index.jsx';
+import { AuthContext } from '../features/authentication/context/index.jsx';
 import { PrivateRoutes } from './PrivateRoutes.jsx';
-import { ConfirmSignUp } from '../pages/ConfirmSignUp/index.jsx';
+import { useContext, useEffect } from 'react';
 
 function App() {
+  const { handleGoogleLogin, currentUser, verifyStorage } = useContext(AuthContext);
+
+  let location = useLocation();
+
+  useEffect(() => {
+    const values = new URLSearchParams(location.search);
+    const state = values.get('state');
+    const code = values.get('code');
+
+    if (state && code) {
+      handleGoogleLogin(state, code);
+    } else {
+      verifyStorage();
+    }
+  }, [location]);
+
   return (
-    <AuthProvider>
-      <ThemeProvider theme={ themes.colors }>
-        <Routes>
-          <Route path="/authentication" element={ <Authentication/> }/>
-          <Route path="/authentication/register-confirmation" element={ <ConfirmSignUp/> }/>
-          <Route path="/" element={ <PrivateRoutes/> }>
-            <Route path="/" element={ <Home/> }/>
-          </Route>
-        </Routes>
-      </ThemeProvider>
-    </AuthProvider>
+
+    <ThemeProvider theme={ themes.colors }>
+      <Routes>
+        <Route path="/authentication" element={ <Authentication/> }/>
+        <Route path="/" element={ <PrivateRoutes/> }>
+          <Route path="/" element={ <Home/> }/>
+        </Route>
+      </Routes>
+    </ThemeProvider>
   );
 }
 

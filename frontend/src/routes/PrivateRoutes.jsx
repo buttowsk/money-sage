@@ -1,6 +1,7 @@
 import { Navigate, Outlet } from 'react-router-dom';
 import { AuthContext } from '../features/authentication/context/index.jsx';
 import { useContext } from 'react';
+import { ExpensesProvider } from '../features/expenses/context/index.jsx';
 
 
 export const PrivateRoutes = () => {
@@ -12,5 +13,11 @@ export const PrivateRoutes = () => {
     </div>
   );
 
-  return isAuthenticated ? <Outlet/> : <Navigate to="/authentication/"/>;
+  return isAuthenticated ? (
+    <ExpensesProvider>
+      <Outlet/>
+    </ExpensesProvider>
+  ) : (
+    <Navigate to="/authentication"/>
+  );
 };
