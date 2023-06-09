@@ -1,15 +1,21 @@
-import { Input } from '../../Input/index.jsx';
+import { Input } from '../../Input';
 import { SignInButton, SignInFormContainer, StyledSpan } from './styles.js';
-import { GoogleLoginButton } from '../../GoogleLoginButton/index.jsx';
-import { useSignInForm } from '../../../hooks/index.js';
-import { backend } from '../../../../../../services/backend.js';
+import { GoogleLoginButton } from '../../GoogleLoginButton';
+import { useSignInForm } from '../../../hooks';
+import { useContext } from 'react';
+import { AuthContext } from '../../../context';
 
 
 export const SignInForm = () => {
   const form = useSignInForm();
+  const { handleLogin } = useContext(AuthContext);
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = async (data) => {
+    try {
+      const resp = await handleLogin(data.email, data.password);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (

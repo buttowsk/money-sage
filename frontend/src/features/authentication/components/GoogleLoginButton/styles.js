@@ -18,7 +18,7 @@ export const GoogleButton = styled.button`
   transition: transform .3s ease-in-out;
   
   &:hover, &:focus {
-    transform: scale(1.1);
+    background-color: rgba(255, 255, 255, .9);
   }
 `;
 

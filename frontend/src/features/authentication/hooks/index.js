@@ -10,7 +10,7 @@ const SignInSchema = yup.object().shape({
 
 
 const SignUpSchema = yup.object().shape({
-  first_name: yup.string().required('Informe seu nome'),
+  first_name: yup.string().notRequired(),
   last_name: yup.string().notRequired(),
   email: yup.string().email('Este email não é válido').required('Informe um email'),
   password: yup.string().required('Informe uma senha').min(6).max(20),
