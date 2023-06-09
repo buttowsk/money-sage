@@ -1,17 +1,17 @@
 version: '3.8'
 
 services:
-  gateway:
-    build: ../gateway
-    ports:
-      - "8080:8080"
-    expose:
-      - "8080"
-    depends_on:
+  #gateway:
+  #  build: ../gateway
+  #  ports:
+  #    - "8080:8080"
+  #  expose:
+  #    - "8080"
+  #  depends_on:
       #- notification-serive
-      - user-service
-    networks:
-      - moneysage-network
+  #    - user-service
+   # networks:
+    #  - moneysage-network
 
     #notification-serive:
     # build: ../microservices/notification-service
