@@ -1,7 +1,7 @@
 import { Input } from '../../Input/index.jsx';
 import { SignUpButton, StyledSpan, SignUpFormContainer } from './styles.js';
 import { GoogleLoginButton } from '../../GoogleLoginButton/index.jsx';
-import { useSignUpForm } from '../../../hooks/index.js';
+import { useSignUpForm } from '../../../lib/index.js';
 import { useNavigate } from 'react-router-dom';
 import {AuthContext} from '../../../context/index.jsx';
 import { useContext } from 'react';

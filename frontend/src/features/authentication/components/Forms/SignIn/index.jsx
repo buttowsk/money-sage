@@ -1,7 +1,7 @@
 import { Input } from '../../Input';
 import { SignInButton, SignInFormContainer, StyledSpan } from './styles.js';
 import { GoogleLoginButton } from '../../GoogleLoginButton';
-import { useSignInForm } from '../../../hooks';
+import { useSignInForm } from '../../../lib';
 import { useContext } from 'react';
 import { AuthContext } from '../../../context';
 

@@ -6,6 +6,7 @@ export const expensesAPI = axios.create({
   baseURL: API_URL,
   headers: {
     'Content-Type': 'application/json',
+    'Authorization': `JWT ${localStorage.getItem('accessToken')}`,
   },
   withCredentials: true,
 });

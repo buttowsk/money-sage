@@ -9,10 +9,8 @@ export const Home = () => {
   const {getExpenses, expenses} = useContext(ExpensesContext);
 
   useEffect(() => {
-    if (expenses.length === 0) {
-      getExpenses();
-    }
-  }, [expenses]);
+    getExpenses();
+  }, []);
 
   return (
     <Container>
