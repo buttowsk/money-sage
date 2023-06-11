@@ -18,29 +18,40 @@ import {
 } from './styles.js';
 import logo from '../../assets/logo.png';
 import ReactCountryFlag from 'react-country-flag';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../features/authentication/context/index.jsx';
 import { ExpensesContext } from '../../features/expenses/context/index.jsx';
 import { useNavigate } from 'react-router-dom';
 
 export const ProfileCard = () => {
   const { currentUser, handleLogout } = useContext(AuthContext);
-  const { totalExpenses } = useContext(ExpensesContext);
+  const { totalExpenses, currencies } = useContext(ExpensesContext);
+  const [total, setTotal] = useState(totalExpenses);
   const [currency, setCurrency] = useState('BRL');
   const [flag, setFlag] = useState('BR');
   const [isCurrenciesOpen, setIsCurrenciesOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
 
-  const handleCurrencyChange = (currency) => {
-    setCurrency(currency);
+
+  useEffect(() => {
+    setTotal(totalExpenses);
     if (currency === 'BRL') {
+      setTotal(totalExpenses);
       setFlag('BR');
     } else if (currency === 'USD') {
+      const usdCurrency = currencies.find((c) => c.code === 'USD')?.ask;
+      setTotal((totalExpenses / usdCurrency).toFixed(2));
       setFlag('US');
     } else if (currency === 'EUR') {
+      const eurCurrency = currencies.find((c) => c.code === 'EUR')?.ask;
+      setTotal((totalExpenses / eurCurrency).toFixed(2));
       setFlag('EU');
     }
+  }, [totalExpenses, currency]);
+
+  const handleCurrencyChange = (currency) => {
+    setCurrency(currency);
     setIsCurrenciesOpen(false);
   };
 
@@ -74,7 +85,7 @@ export const ProfileCard = () => {
       <TotalExpensesContainer>
         <TotalExpensesLabel>Gastos totais</TotalExpensesLabel>
         <TotalExpenses>
-          { totalExpenses } { currency }
+          { total } { currency }
           <CurrencyFlagContainer>
             <ReactCountryFlag
               countryCode={ flag }

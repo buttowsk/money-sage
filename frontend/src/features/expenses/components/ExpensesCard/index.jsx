@@ -29,9 +29,12 @@ export const ExpensesCard = ({ expense }) => {
   useEffect(() => {
     if (currencies && expense) {
       const currency = currencies.find((currency) => currency.code === expense.currency);
-      setExchangeRate(Number(currency.ask).toFixed(2));
+      setExchangeRate(Number(currency?.ask).toFixed(2));
       const converted = (Number(expense.amount) * exchangeRate).toFixed(2);
       setConvertedAmount(Number(converted));
+    } else {
+      setExchangeRate(0);
+      setConvertedAmount(0);
     }
   }, [currencies]);
 

@@ -19,14 +19,17 @@ export const ExpensesProvider = ({ children }) => {
     } catch (err) {
       console.log(err);
     }
-  }
+  };
 
   const getTotalExpenses = () => {
     const total = expenses.reduce((accumulator, expense) => {
-      return accumulator + parseFloat(expense.amount);
+      const currency = currencies.find((currency) => currency.code === expense.currency);
+      const convertedAmount = parseFloat(expense.amount) * currency?.ask;
+      return accumulator + convertedAmount;
     }, 0);
-    setTotalExpenses(total.toFixed(2));
+    setTotalExpenses((total).toFixed(2));
   };
+
 
   const getTotalByTag = () => {
     const totalByTag = expenses.reduce((accumulator, expense) => {
