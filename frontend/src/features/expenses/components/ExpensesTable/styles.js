@@ -32,7 +32,7 @@ export const Title = styled.p`
 
 export const ExpensesContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
   grid-gap: 2rem;
   padding: 2rem 0;
   width: 100%;
@@ -50,4 +50,23 @@ export const NewExpenseButton = styled.button`
   &:hover {
     background-color: ${({theme}) => theme.primary};
   }
+`;
+
+
+export const EmpyContainer = styled.div`
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  padding: 2rem 0;
+  width: 100%;
+  height: 100%;
+`;
+
+export const EmpyText = styled.p`
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: center;
+  color: ${({theme}) => theme.text};
 `;

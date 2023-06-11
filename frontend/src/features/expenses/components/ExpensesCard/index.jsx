@@ -13,25 +13,38 @@ import {
   IconsContainer,
 } from './styles.js';
 import { format } from 'date-fns';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { ExpensesContext } from '../../context/index.jsx';
+import { ExpenseModal } from '../Modal/index.jsx';
 
 
 export const ExpensesCard = ({ expense }) => {
   const [moreOptions, setMoreOptions] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const { deleteExpense } = useContext(ExpensesContext);
   const date = format(new Date(expense.created_at), 'dd/MM/yyyy - HH:mm:ss');
 
   const handleMoreOptions = () => {
     setMoreOptions(!moreOptions);
   };
 
+  const handleDelete = () => {
+    deleteExpense(expense.id);
+  };
+
+  const handleUpdate = () => {
+    setIsOpen(!isOpen);
+  }
+
 
   return (
     <Container key={ expense.id }>
+      { isOpen && <ExpenseModal setIsOpen={ setIsOpen } expense={ expense }/> }
       <CardHeader>
         <CardTitle>{ expense.description }</CardTitle>
         <IconsContainer>
-          <EditIcon appear={ moreOptions ? 'true' : undefined }/>
-          <DeleteIcon appear={ moreOptions ? 'true' : undefined }/>
+          <EditIcon appear={ moreOptions ? 'true' : undefined } onClick={handleUpdate}/>
+          <DeleteIcon appear={ moreOptions ? 'true' : undefined } onClick={ handleDelete }/>
           <VerticalMoreIcon onClick={ handleMoreOptions } more={ moreOptions ? 'true' : undefined }/>
         </IconsContainer>
       </CardHeader>

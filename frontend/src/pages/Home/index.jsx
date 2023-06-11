@@ -6,7 +6,7 @@ import { useContext, useEffect } from 'react';
 import { ExpensesContext } from '../../features/expenses/context/index.jsx';
 
 export const Home = () => {
-  const {getExpenses, expenses} = useContext(ExpensesContext);
+  const { getExpenses } = useContext(ExpensesContext);
 
   useEffect(() => {
     getExpenses();

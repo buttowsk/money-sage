@@ -4,7 +4,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 
 const ExpenseSchema = yup.object().shape({
   description: yup.string().required('Informe uma descrição'),
-  amount: yup.number().required('Informe um valor'),
+  amount: yup.number().required('Informe um valor').positive('A quantidade deve ser um valor positivo'),
   tag: yup.string().required('Informe uma categoria'),
   payment_type: yup.string().required('Informe uma forma de pagamento'),
   currency: yup.string().required('Informe uma moeda'),
@@ -12,7 +12,7 @@ const ExpenseSchema = yup.object().shape({
 
 export const useExpenseForm = () => {
   const {
-    register, reset, watch, handleSubmit, formState: {
+    register, reset, watch, setValue, handleSubmit, formState: {
       errors,
     },
   } = useForm({
@@ -20,12 +20,12 @@ export const useExpenseForm = () => {
     mode: 'all',
     defaultValues: {
       description: '',
-      amount: '',
+      amount: 0,
       tag: '',
       payment_type: '',
       currency: '',
     },
   });
 
-  return { register, watch, handleSubmit, errors, reset };
+  return { register, watch, handleSubmit, errors, reset, setValue };
 }

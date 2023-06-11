@@ -14,6 +14,10 @@ export const ModalBackground = styled.div`
 `;
 
 export const ModalContainer = styled.form`
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: flex-start;
+  gap: 2rem;
   width: 50%;
   max-width: 400px;
   padding: 2rem;
@@ -21,6 +25,10 @@ export const ModalContainer = styled.form`
   background-color: ${ ({ theme }) => theme.cardBackground };
   color: ${ ({ theme }) => theme.text };
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+  
+  & > * {
+   width: 100%;
+  }
 `;
 
 

@@ -12,16 +12,16 @@ export const Input = ({ label, register, error, ...rest }) => {
           )) }
         </StyledSelect>
       </InputContainer>
-    )
+    );
   } else {
     return (
       <InputContainer>
         <Label>{ label }</Label>
-        <StyledInput { ...register(rest.name) } { ...rest } type={ rest.type } />
+        <StyledInput { ...register(rest.name) } { ...rest } />
         { error && <Error>{ error }</Error> }
       </InputContainer>
-    )
+    );
   }
 
 
-}
+};

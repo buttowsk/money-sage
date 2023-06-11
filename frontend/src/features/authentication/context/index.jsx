@@ -1,5 +1,6 @@
 import { createContext, useState } from 'react';
 import { authAPI, googleAuthAPI } from '../services/auth.js';
+import { useNavigate } from 'react-router-dom';
 
 export const AuthContext = createContext({});
 
@@ -7,6 +8,7 @@ export const AuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState({});
   const [isAuthenticated, setIsAuthenticated] = useState(null);
   const [userCreated, setUserCreated] = useState(false);
+  const navigate = useNavigate();
 
 
   const verifyStorage = async () => {
@@ -76,6 +78,7 @@ export const AuthProvider = ({ children }) => {
           const refreshToken = resp.data.refresh;
           await verifyJWT(accessToken, refreshToken);
           await getCurrentUser();
+          navigate('/');
           setIsAuthenticated(true);
         }
       } catch (error) {
@@ -98,7 +101,7 @@ export const AuthProvider = ({ children }) => {
         return 'Token inválido';
       }
     } catch (err) {
-      console.log(err)
+      console.log(err);
       setIsAuthenticated(false);
     }
   };
@@ -123,18 +126,20 @@ export const AuthProvider = ({ children }) => {
         return resp.data.code;
       }
     } catch (err) {
-      console.log(err)
+      console.log(err);
       setUserCreated(false);
     }
   };
 
   const handleLogout = async () => {
     try {
-      await authAPI.post('/jwt/blacklist/', { refresh: localStorage.getItem('refreshToken') });
-      localStorage.removeItem('accessToken');
-      localStorage.removeItem('refreshToken');
-      setCurrentUser(null);
-      setIsAuthenticated(false);
+      const resp = await authAPI.post('/token/blacklist/', { refresh: localStorage.getItem('refreshToken') });
+      if (resp.status === 200) {
+        localStorage.removeItem('accessToken');
+        localStorage.removeItem('refreshToken');
+        setCurrentUser(null);
+        setIsAuthenticated(false);
+      }
     } catch (err) {
       console.log(err);
     }

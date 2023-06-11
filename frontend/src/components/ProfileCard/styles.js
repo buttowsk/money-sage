@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { LuSettings2 } from 'react-icons/lu';
+import { MdOutlineKeyboardArrowDown } from 'react-icons/md';
 export const CardContainer = styled.div`
   background-color: ${({theme}) => theme.cardBackground};
   color: ${({theme}) => theme.text};
@@ -60,9 +61,9 @@ export const TotalExpenses = styled.div`
   font-weight: 700;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  width: 80%;
-  gap: 1rem;
+  width: 100%;
+  gap: 2rem;
+  position: relative;
 `;
 
 export const CurrencyFlagContainer = styled.div`
@@ -70,5 +71,95 @@ export const CurrencyFlagContainer = styled.div`
   align-items: center;
 `;
 
+export const ChangeCurrencyButton = styled.button`
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  background-color: ${({theme}) => theme.primary};
+  color: ${({theme}) => theme.text};
+`;
 
+export const OpenCurrenciesButton = styled(MdOutlineKeyboardArrowDown)`
+  width: 2rem;
+  height: 2rem;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+  
+  ${({open}) => open === 'opened' && `
+    transform: rotate(180deg);
+  `}
+`;
+
+
+export const CurrenciesContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  position: absolute;
+  top: 3rem;
+  right: .5rem;
+  background-color: ${({theme}) => theme.primary};
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.45);
+  border-radius: 12px;
+  padding: 1rem 2rem;
+  z-index: 1;
+`;
+
+export const Currency = styled.span`
+  cursor: pointer;
+  font-size: 1.5rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+    
+  &:hover {
+    color: ${({theme}) => theme.accent};
+  }
+`;
+
+
+export const MenuContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  position: absolute;
+  top: 3rem;
+  right: .5rem;
+  background-color: ${({theme}) => theme.primary};
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.45);
+  border-radius: 12px;
+  padding: 1rem 2rem;
+  z-index: 1;
+`;
+
+export const MenuItem = styled.span`
+  cursor: pointer;
+  font-size: 1.5rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  
+  &:hover {
+    color: ${({theme}) => theme.accent};
+  }
+`;
+
+export const LogoutButton = styled.button`
+  cursor: pointer;
+  font-size: 1.5rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background-color: ${({theme}) => theme.primary};
+  color: ${({theme}) => theme.text};
+    
+  &:hover {
+    color: ${({theme}) => theme.accent};
+  }
+`;
 

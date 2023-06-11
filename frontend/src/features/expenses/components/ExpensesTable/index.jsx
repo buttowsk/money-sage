@@ -1,7 +1,15 @@
 import { ExpensesCard } from '../ExpensesCard/index.jsx';
-import { Title, TableContainer, NewExpenseButton, TableHeader, ExpensesContainer } from './styles.js';
+import {
+  Title,
+  TableContainer,
+  NewExpenseButton,
+  TableHeader,
+  ExpensesContainer,
+  EmpyText,
+  EmpyContainer,
+} from './styles.js';
 import { useContext, useState } from 'react';
-import { NewExpenseModal } from '../NewExpenseModal/index.jsx';
+import { ExpenseModal } from '../Modal/index.jsx';
 import { ExpensesContext } from '../../context/index.jsx';
 
 export const ExpensesTable = () => {
@@ -15,16 +23,25 @@ export const ExpensesTable = () => {
 
   return (
     <TableContainer>
-      { isModalOpen && <NewExpenseModal setIsOpen={ setIsModalOpen }/> }
-      <TableHeader>
-        <Title>Expenses</Title>
-        <NewExpenseButton onClick={ handleNewExpenseClick }>Add Expense</NewExpenseButton>
-      </TableHeader>
-      <ExpensesContainer>
-        { expenses.map((expense) => (
-          <ExpensesCard key={ expense.id } expense={ expense }/>
-        )) }
-      </ExpensesContainer>
+      { isModalOpen && <ExpenseModal setIsOpen={ setIsModalOpen }/> }
+      { expenses.length > 0 ? (
+        <>
+          <TableHeader>
+            <Title>Expenses</Title>
+            <NewExpenseButton onClick={ handleNewExpenseClick }>Add Expense</NewExpenseButton>
+          </TableHeader>
+          <ExpensesContainer>
+            { expenses.map((expense) => (
+              <ExpensesCard key={ expense.id } expense={ expense }/>
+            )) }
+          </ExpensesContainer>
+        </>
+      ) : (
+        <EmpyContainer>
+          <EmpyText>No expenses registered</EmpyText>
+          <NewExpenseButton onClick={ handleNewExpenseClick }>Add your first expense</NewExpenseButton>
+        </EmpyContainer>
+      ) }
     </TableContainer>
   );
 };
