@@ -4,25 +4,6 @@ const paymentTypes = [
   'Dinheiro',
 ];
 
-const currencies = [
-  'BRL',
-  'USD',
-  'EUR',
-  'CAD',
-  'AUD',
-  'GBP',
-  'JPY',
-  'CHF',
-  'CNY',
-  'ILS',
-  'BTC',
-  'ETH',
-  'LTC',
-  'XRP',
-  'DOGE',
-  'USDT',
-];
-
 const tags = [
   'Lazer',
   'Trabalho',
@@ -33,6 +14,5 @@ const tags = [
 
 export const options = {
   paymentTypes,
-  currencies,
   tags,
 };

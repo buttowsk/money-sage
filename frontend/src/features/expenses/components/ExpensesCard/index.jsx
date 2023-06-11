@@ -13,29 +13,31 @@ import {
   IconsContainer,
 } from './styles.js';
 import { format } from 'date-fns';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { ExpensesContext } from '../../context/index.jsx';
 import { ExpenseModal } from '../Modal/index.jsx';
 
 
 export const ExpensesCard = ({ expense }) => {
   const [moreOptions, setMoreOptions] = useState(false);
+  const [exchangeRate, setExchangeRate] = useState(0);
+  const [convertedAmount, setConvertedAmount] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
-  const { deleteExpense } = useContext(ExpensesContext);
+  const { deleteExpense, currencies } = useContext(ExpensesContext);
   const date = format(new Date(expense.created_at), 'dd/MM/yyyy - HH:mm:ss');
 
-  const handleMoreOptions = () => {
-    setMoreOptions(!moreOptions);
-  };
+  useEffect(() => {
+    if (currencies && expense) {
+      const currency = currencies.find((currency) => currency.code === expense.currency);
+      setExchangeRate(Number(currency.ask).toFixed(2));
+      const converted = (Number(expense.amount) * exchangeRate).toFixed(2);
+      setConvertedAmount(Number(converted));
+    }
+  }, [currencies]);
 
   const handleDelete = () => {
     deleteExpense(expense.id);
   };
-
-  const handleUpdate = () => {
-    setIsOpen(!isOpen);
-  }
-
 
   return (
     <Container key={ expense.id }>
@@ -43,9 +45,9 @@ export const ExpensesCard = ({ expense }) => {
       <CardHeader>
         <CardTitle>{ expense.description }</CardTitle>
         <IconsContainer>
-          <EditIcon appear={ moreOptions ? 'true' : undefined } onClick={handleUpdate}/>
+          <EditIcon appear={ moreOptions ? 'true' : undefined } onClick={ () => setIsOpen(!isOpen) }/>
           <DeleteIcon appear={ moreOptions ? 'true' : undefined } onClick={ handleDelete }/>
-          <VerticalMoreIcon onClick={ handleMoreOptions } more={ moreOptions ? 'true' : undefined }/>
+          <VerticalMoreIcon onClick={ () => setMoreOptions(!moreOptions) } more={ moreOptions ? 'true' : undefined }/>
         </IconsContainer>
       </CardHeader>
       <CardBody>
@@ -67,11 +69,11 @@ export const ExpensesCard = ({ expense }) => {
         </CardBodyRow>
         <CardBodyRow>
           <CardRowLabel>Exchange rate</CardRowLabel>
-          <CardRowValue>5.58</CardRowValue>
+          <CardRowValue>{ exchangeRate }</CardRowValue>
         </CardBodyRow>
         <CardBodyRow>
           <CardRowLabel>Amount converted</CardRowLabel>
-          <CardRowValue>1.000,00 BRL</CardRowValue>
+          <CardRowValue>{ convertedAmount } BRL</CardRowValue>
         </CardBodyRow>
         <CardDate>Created at { date }</CardDate>
       </CardBody>

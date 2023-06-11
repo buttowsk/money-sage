@@ -7,9 +7,11 @@ export const Input = ({ label, register, error, ...rest }) => {
       <InputContainer>
         <Label>{ label }</Label>
         <StyledSelect { ...register(rest.name) } { ...rest }>
-          { rest.options.map((option) => (
-            <StyledOption key={ option } value={ option }>{ option }</StyledOption>
-          )) }
+          { rest.name === 'currency' ?
+            rest.options.map((option) =>
+              <StyledOption key={ option.code } value={ option.code }>{ option.code }</StyledOption>)
+            : rest.options.map((option) =>
+              <StyledOption key={ option } value={ option }>{ option }</StyledOption>) }
         </StyledSelect>
       </InputContainer>
     );
@@ -22,6 +24,4 @@ export const Input = ({ label, register, error, ...rest }) => {
       </InputContainer>
     );
   }
-
-
 };

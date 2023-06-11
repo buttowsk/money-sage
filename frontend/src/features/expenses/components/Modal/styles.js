@@ -19,7 +19,7 @@ export const ModalContainer = styled.form`
   align-items: flex-start;
   gap: 2rem;
   width: 50%;
-  max-width: 400px;
+  max-width: 500px;
   padding: 2rem;
   border-radius: 12px;
   background-color: ${ ({ theme }) => theme.cardBackground };

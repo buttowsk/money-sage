@@ -6,9 +6,10 @@ import { useContext, useEffect, useRef } from 'react';
 import { options } from '../Input/options.js';
 
 export const ExpenseModal = ({ setIsOpen, expense }) => {
-  const { getExpenses, updateExpense, createExpense } = useContext(ExpensesContext);
+  const { getExpenses, updateExpense, createExpense, currencies } = useContext(ExpensesContext);
   const form = useExpenseForm();
   const modalRef = useRef();
+  const { paymentTypes, tags } = options;
 
   const handleClickOutside = (e) => {
     if (modalRef.current === e.target) {
@@ -28,7 +29,6 @@ export const ExpenseModal = ({ setIsOpen, expense }) => {
     }
   }, [expense]);
 
-
   const onSubmit = async (data) => {
     if (expense) {
       await updateExpense(expense, data);
@@ -38,9 +38,7 @@ export const ExpenseModal = ({ setIsOpen, expense }) => {
       await createExpense(data);
       setIsOpen(false);
     }
-
   };
-
 
   return (
     <ModalBackground ref={ modalRef } onClick={ handleClickOutside }>
@@ -50,11 +48,11 @@ export const ExpenseModal = ({ setIsOpen, expense }) => {
         <Input label="Amount" name="amount" register={ form.register }
                error={ form.errors.amount?.message }/>
         <Input label="Payment type" name="payment_type" register={ form.register }
-               error={ form.errors.payment_type?.message } options={ options.paymentTypes }/>
+               error={ form.errors.payment_type?.message } options={ paymentTypes }/>
         <Input label="Currency" name="currency" register={ form.register }
-               error={ form.errors.currency?.message } options={ options.currencies }/>
+               error={ form.errors.currency?.message } options={ currencies }/>
         <Input label="Tag" name="tag" register={ form.register } error={ form.errors.tag?.message }
-               options={ options.tags }/>
+               options={ tags }/>
         { expense ? <AddButton type={ 'submit' }>Update</AddButton> : <AddButton type={ 'submit' }>Add</AddButton> }
       </ModalContainer>
     </ModalBackground>

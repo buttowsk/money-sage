@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from 'react';
-import { expensesAPI } from '../services/index.js';
+import { currencyAPI, expensesAPI } from '../services/index.js';
 
 export const ExpensesContext = createContext({});
 
@@ -7,8 +7,19 @@ export const ExpensesProvider = ({ children }) => {
   const [expenses, setExpenses] = useState([]);
   const [totalExpenses, setTotalExpenses] = useState(Number(0));
   const [totalByTag, setTotalByTag] = useState([]);
+  const [currencies, setCurrencies] = useState([]);
   const accessToken = localStorage.getItem('accessToken');
   expensesAPI.defaults.headers.common.Authorization = `JWT ${ accessToken }`;
+
+  const getCurrencies = async () => {
+    try {
+      const resp = await currencyAPI.get();
+      const currencies = Object.values(resp.data);
+      setCurrencies(currencies.filter((currency) => currency.codein !== 'BRLT'));
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
   const getTotalExpenses = () => {
     const total = expenses.reduce((accumulator, expense) => {
@@ -36,6 +47,7 @@ export const ExpensesProvider = ({ children }) => {
   useEffect(() => {
     getTotalExpenses();
     getTotalByTag();
+    getCurrencies();
   }, [expenses]);
 
   const getExpenses = async () => {
@@ -94,6 +106,7 @@ export const ExpensesProvider = ({ children }) => {
     expenses,
     totalExpenses,
     totalByTag,
+    currencies,
     getExpenses,
     createExpense,
     updateExpense,

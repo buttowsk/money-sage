@@ -31,7 +31,7 @@ export const ExpensesTable = () => {
             <NewExpenseButton onClick={ handleNewExpenseClick }>Add Expense</NewExpenseButton>
           </TableHeader>
           <ExpensesContainer>
-            { expenses.map((expense) => (
+            { expenses.reverse().map((expense) => (
               <ExpensesCard key={ expense.id } expense={ expense }/>
             )) }
           </ExpensesContainer>

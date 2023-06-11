@@ -38,7 +38,7 @@ export const GlobalStyles = createGlobalStyle`
     height: auto;
   }
 
-  input, textarea {
+  input, textarea, select {
     border: none;
     outline: none;
   }
