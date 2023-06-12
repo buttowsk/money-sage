@@ -1,9 +1,9 @@
 export const themes = {
   colors: {
-    background: '#38396f',
+    background: '#15C4FE',
     text: '#fcfdfc',
-    primary: '#212140',
-    accent: '#7563b0',
-    cardBackground: '#131316',
+    primary: '#25363c',
+    accent: '#57fefe',
+    cardBackground: '#131d20',
   }
 }

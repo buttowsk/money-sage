@@ -44,7 +44,7 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   *::-webkit-scrollbar {
-    width: 0.5rem;
+    width: .5rem;
   }
 
   *::-webkit-scrollbar-track {
@@ -53,11 +53,11 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   *::-webkit-scrollbar-thumb {
-    background: #7563b0;
+    background: rgba(87, 254, 254, 1);
     border-radius: 0.5rem;
   }
 
   *::-webkit-scrollbar-thumb:hover {
-    background: rgba(117, 99, 176, 0.6);
+    background: rgba(87, 254, 254, 0.29);
   }
 `;
