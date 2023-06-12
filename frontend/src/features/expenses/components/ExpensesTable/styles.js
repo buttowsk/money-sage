@@ -7,7 +7,7 @@ export const TableContainer = styled.div`
   flex-flow: column nowrap;
   gap: .5rem;
   padding: 0 2rem;
-  border-radius: 12px;
+  border-radius: 20px;
   background-color: ${({theme}) => theme.cardBackground};
   color: ${({theme}) => theme.text};
   overflow: auto;
@@ -42,13 +42,14 @@ export const NewExpenseButton = styled.button`
   padding: 1rem 2.5rem;
   border-radius: 12px;
   background-color: ${({theme}) => theme.accent};
-  color: ${({theme}) => theme.text};
+  color: ${({theme}) => theme.cardBackground};
   font-size: 1.5rem;
   font-weight: 700;
   transition: all 0.2s ease-in-out;
   
   &:hover {
     background-color: ${({theme}) => theme.primary};
+    color: ${({theme}) => theme.text};
   }
 `;
 

@@ -13,6 +13,11 @@ export const SignInForm = () => {
   const onSubmit = async (data) => {
     try {
       const resp = await handleLogin(data.email, data.password);
+
+      if (resp.status === 200) {
+        form.reset();
+      }
+
     } catch (err) {
       console.log(err);
     }

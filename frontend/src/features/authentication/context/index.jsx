@@ -54,9 +54,13 @@ export const AuthProvider = ({ children }) => {
         });
         if (resp.status === 200) {
           const user = resp.data;
+          console.log(user)
           setCurrentUser(user);
         }
       } catch (err) {
+        setIsAuthenticated(false);
+        localStorage.removeItem('accessToken');
+        localStorage.removeItem('refreshToken');
         console.log(err);
       }
     }
@@ -135,6 +139,7 @@ export const AuthProvider = ({ children }) => {
     try {
       const resp = await authAPI.post('/token/blacklist/', { refresh: localStorage.getItem('refreshToken') });
       if (resp.status === 200) {
+        authAPI.defaults.headers.Authorization = null;
         localStorage.removeItem('accessToken');
         localStorage.removeItem('refreshToken');
         setCurrentUser(null);

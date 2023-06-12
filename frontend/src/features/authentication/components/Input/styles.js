@@ -15,7 +15,8 @@ export const InputContainer = styled.div`
 export const StyledInput = styled.input`
   width: 100%;
   border-radius: 12px;
-  background-color: ${ ({ theme }) => theme.primary };
+  background-color: ${ ({ theme }) => theme.cardBackground };
+  border: 2px solid ${ ({ theme }) => theme.accent };
   color: ${ ({ theme }) => theme.text };
   padding: 1.235rem 1rem;
   box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.25);
@@ -28,7 +29,7 @@ export const Label = styled.label`
   left: .5rem;
   pointer-events: none;
   position: absolute;
-  top: -1.5rem;
+  top: -1.8rem;
   transition: .5s;
 `;
 

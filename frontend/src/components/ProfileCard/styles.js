@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { LuSettings2 } from 'react-icons/lu';
 import { MdOutlineKeyboardArrowDown } from 'react-icons/md';
+import { NavLink } from 'react-router-dom';
 export const CardContainer = styled.div`
   background-color: ${({theme}) => theme.cardBackground};
   color: ${({theme}) => theme.text};
@@ -10,7 +11,7 @@ export const CardContainer = styled.div`
   align-items: start;
   padding: 2rem;
   position: relative;
-  border-radius: 12px;
+  border-radius: 20px;
   grid-column: 2;
   grid-row: 1;
 `;
@@ -135,7 +136,7 @@ export const MenuContainer = styled.div`
   z-index: 1;
 `;
 
-export const MenuItem = styled.span`
+export const MenuItem = styled(NavLink)`
   cursor: pointer;
   font-size: 1.5rem;
   font-weight: 700;

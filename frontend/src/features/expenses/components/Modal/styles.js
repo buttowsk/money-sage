@@ -36,12 +36,13 @@ export const AddButton = styled.button`
   padding: 1rem 2.5rem;
   border-radius: 12px;
   background-color: ${ ({ theme }) => theme.accent };
-  color: ${ ({ theme }) => theme.text };
+  color: ${ ({ theme }) => theme.cardBackground };
   font-size: 1.5rem;
   font-weight: 700;
   transition: all 0.2s ease-in-out;
 
   &:hover {
     background-color: ${ ({ theme }) => theme.primary };
+    color: ${ ({ theme }) => theme.text };
   }
 `;

@@ -21,7 +21,6 @@ import ReactCountryFlag from 'react-country-flag';
 import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../features/authentication/context/index.jsx';
 import { ExpensesContext } from '../../features/expenses/context/index.jsx';
-import { useNavigate } from 'react-router-dom';
 
 export const ProfileCard = () => {
   const { currentUser, handleLogout } = useContext(AuthContext);
@@ -31,7 +30,6 @@ export const ProfileCard = () => {
   const [flag, setFlag] = useState('BR');
   const [isCurrenciesOpen, setIsCurrenciesOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const navigate = useNavigate();
 
 
   useEffect(() => {
@@ -65,7 +63,6 @@ export const ProfileCard = () => {
 
   const handleLogoutClick = async () => {
     await handleLogout();
-    navigate('/authentication');
   };
 
   return (
@@ -73,13 +70,13 @@ export const ProfileCard = () => {
       { isMenuOpen && (
         <MenuContainer>
           <MenuItem>Configurações</MenuItem>
-          <MenuItem>Perfil</MenuItem>
-          <LogoutButton onClick={ handleLogoutClick }>Logout</LogoutButton>
+          <MenuItem to={'/profile'}>Perfil</MenuItem>
+          <LogoutButton onClick={ handleLogoutClick } to={'/authentication'}>Logout</LogoutButton>
         </MenuContainer>
       ) }
       <SettingsIcon onClick={ handleOpenMenu }/>
       <PersonContainer>
-        <Avatar src={ logo }/>
+        <Avatar src={ currentUser?.picture || logo }/>
         <Name>{ currentUser?.first_name }</Name>
       </PersonContainer>
       <TotalExpensesContainer>

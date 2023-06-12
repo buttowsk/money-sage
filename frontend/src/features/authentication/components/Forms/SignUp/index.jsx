@@ -2,7 +2,6 @@ import { Input } from '../../Input/index.jsx';
 import { SignUpButton, StyledSpan, SignUpFormContainer } from './styles.js';
 import { GoogleLoginButton } from '../../GoogleLoginButton/index.jsx';
 import { useSignUpForm } from '../../../lib/index.js';
-import { useNavigate } from 'react-router-dom';
 import {AuthContext} from '../../../context/index.jsx';
 import { useContext } from 'react';
 
@@ -60,7 +59,7 @@ export const SignUpForm = () => {
         label="Confirm password"
         error={ form.errors.confirmPassword?.message }
       />
-      <SignUpButton type={ 'submit' }>Continuar</SignUpButton>
+      <SignUpButton type={ 'submit' }>Confirmar cadastro</SignUpButton>
       <StyledSpan>Ou</StyledSpan>
       <GoogleLoginButton/>
     </SignUpFormContainer>

@@ -9,7 +9,7 @@ export const Container = styled.div`
   display: grid;
   grid-template-columns: repeat(1, 1fr) minmax(200px, 300px);
   grid-template-rows: 1fr 1fr;
-  padding: 2rem;
+  padding: 1.5rem;
   grid-gap: 1rem;
 `;
 
@@ -23,7 +23,7 @@ export const Logo = styled.img.attrs({
 
 export const CardTest = styled.div`
   padding: 2rem;
-  border-radius: 12px;
+  border-radius: 20px;
   grid-column: 2;
   grid-row: 2;
   height: 100%;
@@ -38,7 +38,7 @@ export const CardTextLarge = styled.div`
   align-items: center;
   width: 100%;
   max-height: 100%;
-  border-radius: 12px;
+  border-radius: 20px;
   padding: 2rem;
   grid-column: 1;
   grid-row: 2;

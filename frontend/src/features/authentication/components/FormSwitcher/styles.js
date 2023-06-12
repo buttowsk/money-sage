@@ -7,8 +7,8 @@ export const SwitcherContainer = styled.div`
   gap: 1.3rem;
   padding: 1.2rem .5rem;
   width: 100%;
-  border-radius: 20px;
-  background-color: ${ ({ theme }) => theme.primary };
+  border-radius: 12px;
+  background-color: #25363c;
   position: relative;
   margin-bottom: 2rem;
 
@@ -16,9 +16,10 @@ export const SwitcherContainer = styled.div`
     content: '';
     width: 50%;
     height: 100%;
-    border-radius: 20px;
-    background-color: rgb(117, 99, 176, 1);
-    border: 2px solid ${ ({ theme }) => theme.background };
+    background-color: ${ ({ theme }) => theme.cardBackground };
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    border: 2px solid ${ ({ theme }) => theme.accent };
     z-index: 1;
     position: absolute;
     top: 0;
@@ -36,7 +37,7 @@ export const SignIn = styled.button`
   width: 50%;
   height: 100%;
   z-index: 2;
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-weight: 500;
 `;
 
@@ -47,7 +48,7 @@ export const SignUp = styled.button`
   width: 50%;
   height: 100%;
   z-index: 2;
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-weight: 500;
 `;
 

@@ -17,9 +17,9 @@ export const AuthenticationCard = styled.div`
   width: 100%;
   max-width: 400px;
   padding: 3rem 3rem 6rem 3rem;
-  border-radius: 30px;
   background-color: ${ ({ theme }) => theme.cardBackground };
-  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
   color: ${ ({ theme }) => theme.text };
   gap: 2.5rem;
   position: relative;

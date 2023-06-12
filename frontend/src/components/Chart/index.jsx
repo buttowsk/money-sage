@@ -3,7 +3,6 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
-  Legend,
   ResponsiveContainer,
   BarChart,
   Bar,
@@ -31,12 +30,11 @@ export const Chart = () => {
   return (
     <ResponsiveContainer width="100%" height="90%">
       <BarChart width={ 730 } data={ totalByTag } height={ 250 } barSize={ 30 }>
-        <CartesianGrid strokeDasharray="3 3"/>
+        <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="tag"/>
         <YAxis/>
         <Tooltip content={ <CustomTooltip/> } cursor={ { fill: 'rgba(47, 47, 76, 0.5)' } }/>
-        <Legend/>
-        <Bar dataKey="amount" fill="#ffff"/>
+        <Bar dataKey="amount" fill="#57fefe"/>
       </BarChart>
     </ResponsiveContainer>
   );

@@ -1,12 +1,12 @@
 import styled from 'styled-components';
-import { LuEdit2, LuMoreVertical, LuTrash2, LuMoreHorizontal } from 'react-icons/lu';
+import { LuEdit2, LuMoreVertical, LuTrash2 } from 'react-icons/lu';
 
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   color: ${ ({ theme }) => theme.text };
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 0 8px 1px rgba(0, 0, 0, 0.75);
   border-radius: 12px;
 `;
 

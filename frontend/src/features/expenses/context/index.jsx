@@ -8,6 +8,7 @@ export const ExpensesProvider = ({ children }) => {
   const [totalExpenses, setTotalExpenses] = useState(Number(0));
   const [totalByTag, setTotalByTag] = useState([]);
   const [currencies, setCurrencies] = useState([]);
+
   const accessToken = localStorage.getItem('accessToken');
   expensesAPI.defaults.headers.common.Authorization = `JWT ${ accessToken }`;
 
@@ -30,7 +31,6 @@ export const ExpensesProvider = ({ children }) => {
     setTotalExpenses((total).toFixed(2));
   };
 
-
   const getTotalByTag = () => {
     const totalByTag = expenses.reduce((accumulator, expense) => {
       const { tag, amount } = expense;
@@ -45,7 +45,6 @@ export const ExpensesProvider = ({ children }) => {
     });
     setTotalByTag(totalByTagArray);
   };
-
 
   useEffect(() => {
     getTotalExpenses();
@@ -91,7 +90,6 @@ export const ExpensesProvider = ({ children }) => {
       console.log(err);
     }
   };
-
 
   const deleteExpense = async (expenseId) => {
     try {

@@ -14,13 +14,14 @@ export const SignUpButton = styled.button`
   border-radius: 20px;
   background-color: ${ ({ theme }) => theme.cardBackground };
   color: ${ ({ theme }) => theme.text };
-  font-size: 2rem;
+  font-size: 1.7rem;
   font-weight: 500;
-  transition: background-color .3s ease-in-out;
+  transition: all .4s ease-in-out;
   border: 2px solid ${ ({ theme }) => theme.accent };
 
   &:hover, &:focus {
     background-color: ${ ({ theme }) => theme.accent };
+    color: ${ ({ theme }) => theme.cardBackground };
   }
 `;
 
