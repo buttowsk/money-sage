@@ -12,6 +12,7 @@ export const Label = styled.label`
 `;
 
 export const StyledInput = styled.input`
+  appearance: none;
   padding: 1rem;
   border-radius: 12px;
   background-color: ${({theme}) => theme.cardBackground};
@@ -24,6 +25,14 @@ export const StyledInput = styled.input`
   &:focus, &:hover {
     box-shadow: 0 0 0 3px ${({theme}) => theme.accent};
   }
+  
+  &[type=number]::-webkit-inner-spin-button,
+  &[type=number]::-webkit-outer-spin-button {
+    appearance: none;
+    margin: 0;
+  }
+  
+  
 `;
 
 export const Error = styled.span`

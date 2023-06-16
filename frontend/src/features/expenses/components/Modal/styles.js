@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { IoClose } from 'react-icons/io5';
 
 export const ModalBackground = styled.div`
   position: fixed;
@@ -25,9 +26,23 @@ export const ModalContainer = styled.form`
   background-color: ${ ({ theme }) => theme.cardBackground };
   color: ${ ({ theme }) => theme.text };
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
-  
+
   & > * {
-   width: 100%;
+    width: 100%;
+  }
+`;
+
+export const CloseButton = styled(IoClose)`
+  position: absolute;
+  color: ${ ({ theme }) => theme.primary };
+  top: 1rem;
+  right: 1rem;
+  font-size: 3rem;
+  cursor: pointer;
+  transition: transform .2s ease-in-out;
+
+  &:hover {
+    transform: scale(1.2);
   }
 `;
 

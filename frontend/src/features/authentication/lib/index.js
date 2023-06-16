@@ -11,7 +11,7 @@ const SignInSchema = yup.object().shape({
 const SignUpSchema = yup.object().shape({
   email: yup.string().email('Este email não é válido').required('Informe um email'),
   password: yup.string().required('Informe uma senha').min(6).max(20),
-  confirmPassword: yup.string().oneOf([yup.ref('password'), null], 'As senhas não são iguais'),
+  confirmPassword: yup.string().oneOf([yup.ref('password')], 'As senhas não são iguais'),
 });
 
 export const useSignInForm = () => {

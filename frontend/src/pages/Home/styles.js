@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import logo from '../../assets/logo.png';
 
-export const Container = styled.div`
+export const GridContainer = styled.div`
   width: 100%;
   height: 100vh;
   background-color: ${ ({ theme }) => theme.background };
@@ -37,7 +37,6 @@ export const CardTextLarge = styled.div`
   justify-content: flex-end;
   align-items: center;
   width: 100%;
-  max-height: 100%;
   border-radius: 20px;
   padding: 2rem;
   grid-column: 1;

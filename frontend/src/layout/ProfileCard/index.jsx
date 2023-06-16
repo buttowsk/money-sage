@@ -1,21 +1,13 @@
 import {
   CardContainer,
-  Name,
   Avatar,
-  TotalExpensesContainer,
-  TotalExpenses,
-  PersonContainer,
   SettingsIcon,
-  CurrencyFlagContainer,
-  TotalExpensesLabel,
   ChangeCurrencyButton,
-  Currency,
-  CurrenciesContainer,
   OpenCurrenciesButton,
-  MenuContainer,
-  MenuItem,
   LogoutButton,
 } from './styles.js';
+import { FlexContainer } from '../../components/FlexContainer/index.jsx';
+import { Text } from '../../components/Text/index.jsx';
 import logo from '../../assets/logo.png';
 import ReactCountryFlag from 'react-country-flag';
 import { useContext, useEffect, useState } from 'react';
@@ -68,22 +60,26 @@ export const ProfileCard = () => {
   return (
     <CardContainer>
       { isMenuOpen && (
-        <MenuContainer>
-          <MenuItem>Configurações</MenuItem>
-          <MenuItem to={'/profile'}>Perfil</MenuItem>
-          <LogoutButton onClick={ handleLogoutClick } to={'/authentication'}>Logout</LogoutButton>
-        </MenuContainer>
+        <FlexContainer position={ 'absolute' } direction={ 'column' } bgColor={ 'primary' }
+                       shadow={ '0 15px 30px rgba(0, 0, 0, 0.45)' } padding={ '1rem 2rem' } top={ '3rem'}
+                       right={ '.5rem' } zIndex={'1'}>
+          <Text type={ 'navlink' } to={ '/config' }>Configurações</Text>
+          <Text type={ 'navlink' } to={ '/profile' }>Perfil</Text>
+          <LogoutButton onClick={ handleLogoutClick } to={ '/authentication' }>Logout</LogoutButton>
+        </FlexContainer>
       ) }
       <SettingsIcon onClick={ handleOpenMenu }/>
-      <PersonContainer>
+
+      <FlexContainer>
         <Avatar src={ currentUser?.picture || logo }/>
-        <Name>{ currentUser?.first_name }</Name>
-      </PersonContainer>
-      <TotalExpensesContainer>
-        <TotalExpensesLabel>Gastos totais</TotalExpensesLabel>
-        <TotalExpenses>
-          { total } { currency }
-          <CurrencyFlagContainer>
+        <Text type={ 'span' } size={ '2rem' }>{ currentUser?.first_name }</Text>
+      </FlexContainer>
+      <FlexContainer direction={ 'column' } align={ 'start' }>
+        <Text type={ 'span' } size={ '2rem' } weight={ '700' }>Gastos totais</Text>
+        <FlexContainer width={ '100%' } position={ 'relative' }>
+          <Text size={ '2rem' }>{ total }</Text>
+          <Text size={ '2rem' }>{ currency }</Text>
+          <FlexContainer>
             <ReactCountryFlag
               countryCode={ flag }
               svg
@@ -93,23 +89,24 @@ export const ProfileCard = () => {
                 borderRadius: '50%',
               } }
             />
-          </CurrencyFlagContainer>
+          </FlexContainer>
           <OpenCurrenciesButton onClick={ handleOpenCurrencies } open={ isCurrenciesOpen ? 'opened' : '' }/>
           { isCurrenciesOpen && (
-            <CurrenciesContainer>
+            <FlexContainer direction={ 'column' } position={ 'absolute' } padding={ '1rem 2rem' } bgColor={ 'primary' }
+                           top={ '3.5rem' } right={ '.5rem' }>
               <ChangeCurrencyButton onClick={ () => handleCurrencyChange('BRL') }>
-                <Currency>BRL</Currency>
+                <Text weight={ '700' }>BRL</Text>
               </ChangeCurrencyButton>
               <ChangeCurrencyButton onClick={ () => handleCurrencyChange('USD') }>
-                <Currency>USD</Currency>
+                <Text weight={ '700' }>USD</Text>
               </ChangeCurrencyButton>
               <ChangeCurrencyButton onClick={ () => handleCurrencyChange('EUR') }>
-                <Currency>EUR</Currency>
+                <Text weight={ '700' }>EUR</Text>
               </ChangeCurrencyButton>
-            </CurrenciesContainer>
+            </FlexContainer>
           ) }
-        </TotalExpenses>
-      </TotalExpensesContainer>
+        </FlexContainer>
+      </FlexContainer>
     </CardContainer>
   );
 };

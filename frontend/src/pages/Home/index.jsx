@@ -1,5 +1,5 @@
-import { CardTest, Container, Logo, CardTextLarge } from './styles.js';
-import { ProfileCard } from '../../components/ProfileCard/index.jsx';
+import { CardTest, GridContainer, Logo, CardTextLarge } from './styles.js';
+import { ProfileCard } from '../../layout/ProfileCard/index.jsx';
 import { ExpensesTable } from '../../features/expenses/components/ExpensesTable/index.jsx';
 import { Chart } from '../../components/Chart/index.jsx';
 import { useContext, useEffect } from 'react';
@@ -13,7 +13,7 @@ export const Home = () => {
   }, []);
 
   return (
-    <Container>
+    <GridContainer>
       <ExpensesTable/>
       <ProfileCard/>
       <CardTest>
@@ -22,6 +22,6 @@ export const Home = () => {
       <CardTextLarge>
         <Chart/>
       </CardTextLarge>
-    </Container>
+    </GridContainer>
   );
 };

@@ -1,11 +1,9 @@
 import {
   XAxis,
   YAxis,
-  CartesianGrid,
   Tooltip,
   ResponsiveContainer,
-  BarChart,
-  Bar,
+  Area, AreaChart,
 } from 'recharts';
 import { TolltipContainer } from './styles.js';
 import { useContext } from 'react';
@@ -28,14 +26,64 @@ export const Chart = () => {
   const { totalByTag } = useContext(ExpensesContext);
 
   return (
-    <ResponsiveContainer width="100%" height="90%">
-      <BarChart width={ 730 } data={ totalByTag } height={ 250 } barSize={ 30 }>
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="tag"/>
-        <YAxis/>
-        <Tooltip content={ <CustomTooltip/> } cursor={ { fill: 'rgba(47, 47, 76, 0.5)' } }/>
-        <Bar dataKey="amount" fill="#57fefe"/>
-      </BarChart>
+    <ResponsiveContainer width="100%" height="100%">
+      <AreaChart
+        width={500}
+        height={400}
+        data={totalByTag}
+        margin={{
+          top: 15,
+          right: 25,
+          left: -10,
+          bottom: 60,
+        }}
+      >
+        <defs>
+          <linearGradient id="colorRevenue" x1="0" y1="0" x2="0" y2="1">
+            <stop
+              offset="5%"
+              stopColor={'#00C49F'}
+              stopOpacity={0.5}
+            />
+            <stop
+              offset="95%"
+              stopColor={'#00C49F'}
+              stopOpacity={0}
+            />
+          </linearGradient>
+          <linearGradient id="colorExpenses" x1="0" y1="0" x2="0" y2="1">
+            <stop
+              offset="5%"
+              stopColor={'#FF8042'}
+              stopOpacity={0.5}
+            />
+            <stop
+              offset="95%"
+              stopColor={'#FF8042'}
+              stopOpacity={0}
+            />
+          </linearGradient>
+        </defs>
+        <XAxis
+          dataKey="tag"
+          tickLine={false}
+          style={{ fontSize: "10px" }}
+        />
+        <YAxis
+          tickLine={false}
+          axisLine={{ strokeWidth: "0" }}
+          style={{ fontSize: "10px" }}
+        />
+        <Tooltip content={<CustomTooltip/>} />
+        <Area
+          type="monotone"
+          dataKey="amount"
+          dot={true}
+          stroke={'#00C49F'}
+          fillOpacity={1}
+          fill="url(#colorRevenue)"
+        />
+      </AreaChart>
     </ResponsiveContainer>
   );
 };

@@ -1,4 +1,4 @@
-import { ModalBackground, ModalContainer, AddButton } from './styles.js';
+import { ModalBackground, ModalContainer, AddButton, CloseButton } from './styles.js';
 import { Input } from '../Input/index.jsx';
 import { useExpenseForm } from '../../lib/index.js';
 import { ExpensesContext } from '../../context/index.jsx';
@@ -42,6 +42,7 @@ export const ExpenseModal = ({ setIsOpen, expense }) => {
 
   return (
     <ModalBackground ref={ modalRef } onClick={ handleClickOutside }>
+      <CloseButton onClick={() => {setIsOpen(false)}}/>
       <ModalContainer onSubmit={ form.handleSubmit(onSubmit) }>
         <Input label="Description" name="description" register={ form.register }
                error={ form.errors.description?.message }/>
