@@ -46,6 +46,18 @@ export const CloseButton = styled(IoClose)`
   }
 `;
 
+export const IncomeButton = styled.button`
+  padding: 1rem 2.5rem;
+  border-radius: 12px;
+  background-color: ${ ({ theme }) => theme.primary };
+  `;
+
+export const ExpenseButton = styled.button`
+  padding: 1rem 2.5rem;
+  border-radius: 12px;
+  background-color: ${ ({ theme }) => theme.primary};
+  ` 
+
 
 export const AddButton = styled.button`
   padding: 1rem 2.5rem;

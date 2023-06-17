@@ -1,4 +1,4 @@
-import { ModalBackground, ModalContainer, AddButton, CloseButton } from './styles.js';
+import { ModalBackground, ModalContainer, AddButton, CloseButton, ExpenseButton, IncomeButton} from './styles.js';
 import { Input } from '../Input/index.jsx';
 import { useExpenseForm } from '../../lib/index.js';
 import { ExpensesContext } from '../../context/index.jsx';

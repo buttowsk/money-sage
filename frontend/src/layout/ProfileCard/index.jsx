@@ -5,6 +5,7 @@ import {
   ChangeCurrencyButton,
   OpenCurrenciesButton,
   LogoutButton,
+  NewExpenseButton,
 } from './styles.js';
 import { FlexContainer } from '../../components/FlexContainer/index.jsx';
 import { Text } from '../../components/Text/index.jsx';
@@ -13,8 +14,10 @@ import ReactCountryFlag from 'react-country-flag';
 import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../features/authentication/context/index.jsx';
 import { ExpensesContext } from '../../features/expenses/context/index.jsx';
+import {ExpenseModal} from '../../features/expenses/components/Modal'
 
 export const ProfileCard = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const { currentUser, handleLogout } = useContext(AuthContext);
   const { totalExpenses, currencies } = useContext(ExpensesContext);
   const [total, setTotal] = useState(totalExpenses);
@@ -23,6 +26,11 @@ export const ProfileCard = () => {
   const [isCurrenciesOpen, setIsCurrenciesOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+    
+
+  const handleNewExpenseClick = () => {
+    setIsModalOpen(!isModalOpen);
+  };
 
   useEffect(() => {
     setTotal(totalExpenses);
@@ -56,9 +64,11 @@ export const ProfileCard = () => {
   const handleLogoutClick = async () => {
     await handleLogout();
   };
+  
 
   return (
     <CardContainer>
+      { isModalOpen && <ExpenseModal setIsOpen={ setIsModalOpen }/> }
       { isMenuOpen && (
         <FlexContainer position={ 'absolute' } direction={ 'column' } bgColor={ 'primary' }
                        shadow={ '0 15px 30px rgba(0, 0, 0, 0.45)' } padding={ '1rem 2rem' } top={ '3rem'}
@@ -106,6 +116,9 @@ export const ProfileCard = () => {
             </FlexContainer>
           ) }
         </FlexContainer>
+      </FlexContainer>
+      <FlexContainer justify={'center'} padding={'2rem'} width={'100%'}>
+            <NewExpenseButton onClick={ handleNewExpenseClick }>New transaction</NewExpenseButton>
       </FlexContainer>
     </CardContainer>
   );
