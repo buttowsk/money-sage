@@ -53,11 +53,7 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   *::-webkit-scrollbar-thumb {
-    background: ${ ({ theme }) => theme.primary };
+    background: transparent;
     border-radius: 0.5rem;
-  }
-
-  *::-webkit-scrollbar-thumb:hover {
-    background: rgba(87, 254, 254, 0.29);
   }
 `;

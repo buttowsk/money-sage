@@ -8,11 +8,12 @@ import {
 import { Input } from '../Input/index.jsx';
 import { useExpenseForm } from '../../lib/index.js';
 import { WalletContext } from '../../context/index.jsx';
-import { useContext, useEffect, useRef } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import { options } from '../Input/options.js';
 import { Container } from '../../../../components/FlexContainer/styles.js';
 
 export const ExpenseModal = ({ setIsOpen, expense }) => {
+  const [transactionType, setTransactionType] = useState('');
   const { getTransactions, updateTransaction, createTransaction, currencies } = useContext(WalletContext);
   const form = useExpenseForm();
   const modalRef = useRef();
@@ -38,11 +39,11 @@ export const ExpenseModal = ({ setIsOpen, expense }) => {
 
   const onSubmit = async (data) => {
     if (expense) {
-      await updateTransaction('expense', expense, data);
-      await getTransactions('expense');
+      await updateTransaction(transactionType, expense, data);
+      await getTransactions(transactionType);
       setIsOpen(false);
     } else {
-      await createTransaction('expense', data);
+      await createTransaction(transactionType, data);
       setIsOpen(false);
     }
   };
@@ -64,8 +65,10 @@ export const ExpenseModal = ({ setIsOpen, expense }) => {
         <Input label="Tag" name="tag" register={ form.register } error={ form.errors.tag?.message }
                options={ tags }/>
         <Container width={ '100%' } justify={ 'space-between' }>
-          <TransactionType type={ 'button' }>Expense</TransactionType>
-          <TransactionType type={ 'button' }>Income</TransactionType>
+          <TransactionType type={ 'button' } onClick={ () => setTransactionType('expense') }
+                           $active={ transactionType === 'expense' && true }>Expense</TransactionType>
+          <TransactionType type={ 'button' } onClick={ () => setTransactionType('income') }
+                           $active={ transactionType === 'income' && true }>Income</TransactionType>
         </Container>
         { expense ? <AddButton type={ 'submit' }>Update</AddButton> : <AddButton type={ 'submit' }>Add</AddButton> }
       </ModalContainer>

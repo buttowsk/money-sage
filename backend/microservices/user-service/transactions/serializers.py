@@ -17,4 +17,4 @@ class IncomeSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
     def create(self, validated_data):
-        return Expense.objects.create(**validated_data)
+        return Income.objects.create(**validated_data)

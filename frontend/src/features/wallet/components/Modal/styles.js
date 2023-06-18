@@ -56,11 +56,18 @@ export const TransactionType = styled.button`
   font-weight: 700;
   color: ${ ({ theme }) => theme.text };
   background-color: ${ ({ theme, selected }) => selected ? theme.primary : theme.cardBackground };
-  transition: all 0.4s ease;
-  
-  &:hover {
-    box-shadow: 0 0 30px 4px rgba(0,196,159,1);
+  box-shadow: ${ ({ $active }) => $active && '0 0 30px 4px rgba(0,196,159,1)' };
+  transition: box-shadow 0.4s ease-in-out, transform 0.6s ease;
+
+  &:hover, &:focus {
+    box-shadow: 0 0 30px 4px rgba(0, 196, 159, 1);
   }
+
+  &:active {
+    transform: scale(0.7);
+  }
+
+
 `;
 
 export const AddButton = styled.button`
@@ -73,7 +80,7 @@ export const AddButton = styled.button`
   transition: all 0.2s ease-in-out;
 
   &:hover {
-    box-shadow: 0 0 30px 4px rgba(0,196,159,1);
+    box-shadow: 0 0 30px 4px rgba(0, 196, 159, 1);
     color: ${ ({ theme }) => theme.text };
   }
 `;

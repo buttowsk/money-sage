@@ -39,15 +39,26 @@ export const WalletProvider = ({ children }) => {
     setTotalExpenses((total).toFixed(2));
   };
 
+  const getTotalIncomes = () => {
+    const total = incomes.reduce((accumulator, income) => {
+      const currency = currencies.find((currency) => currency.code === income.currency);
+      const convertedAmount = parseFloat(income.amount) * currency?.ask;
+      return accumulator + convertedAmount;
+    }, 0);
+    setTotalIncomes((total).toFixed(2));
+  };
 
   const getTotalByTag = () => {
     const totalByTag = expenses.reduce((accumulator, expense) => {
-      const { tag, amount } = expense;
-      if (!accumulator[tag]) {
-        accumulator[tag] = 0;
+      const { tag, amount, currency } = expense;
+      const { convertedAmount } = convertAmount(amount, currency);
+      if (accumulator[tag]) {
+        accumulator[tag] += parseFloat(convertedAmount);
+        return accumulator;
+      } else {
+        accumulator[tag] = parseFloat(convertedAmount);
+        return accumulator;
       }
-      accumulator[tag] += parseFloat(amount);
-      return accumulator;
     }, {});
     const totalByTagArray = Object.entries(totalByTag).map(([tag, amount]) => {
       return { tag, amount };
@@ -57,14 +68,15 @@ export const WalletProvider = ({ children }) => {
 
   useEffect(() => {
     getTotalExpenses();
+    getTotalIncomes();
     getTotalByTag();
     getCurrencies();
-  }, [expenses]);
+  }, [expenses, incomes]);
 
 
   const getTransactions = async (type) => {
     try {
-      const resp = type === 'expense' ? await transactionsApi.get('/expense') : await transactionsApi.get('/income');
+      const resp = await transactionsApi.get(`/${ type }/`);
       if (resp.status === 200) {
         const data = resp.data;
         type === 'expense' ? setExpenses(data) : setIncomes(data);
@@ -77,13 +89,12 @@ export const WalletProvider = ({ children }) => {
   const createTransaction = async (type, data) => {
     try {
       const { convertedAmount, exchangeRate } = convertAmount(data.amount, data.currency);
-      data = {
+      const newData = {
         ...data,
         converted_amount: convertedAmount,
         exchange_rate: exchangeRate,
       };
-      console.log(data);
-      const resp = type === 'expense' ? await transactionsApi.post('/expense/', data) : await transactionsApi.post('/income/', data);
+      const resp = await transactionsApi.post(`/${ type }/`, newData);
       await getCurrencies();
       if (resp.status === 201) {
         const data = resp.data;
@@ -97,13 +108,13 @@ export const WalletProvider = ({ children }) => {
   const updateTransaction = async (type, expense, data) => {
     try {
       const { convertedAmount, exchangeRate } = convertAmount(data.amount, data.currency);
-      data = {
+      const newData = {
         ...data,
         converted_amount: convertedAmount,
         exchange_rate: exchangeRate,
       };
-      const resp = type === 'expense' ? await transactionsApi.put(`/expense/${ expense.id }/`, data)
-        : await transactionsApi.put(`/income/${ expense.id }/`, data);
+      const resp = type === 'expense' ? await transactionsApi.put(`/expense/${ expense.id }/`, newData)
+        : await transactionsApi.put(`/income/${ expense.id }/`, newData);
       if (resp.status === 200) {
         const updatedData = resp.data;
         const updatedList = type === 'expense' ?
@@ -132,6 +143,7 @@ export const WalletProvider = ({ children }) => {
     expenses,
     incomes,
     totalExpenses,
+    totalIncomes,
     totalByTag,
     currencies,
     getTransactions,

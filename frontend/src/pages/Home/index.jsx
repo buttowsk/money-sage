@@ -1,9 +1,11 @@
-import { CardTest, GridContainer, Logo, CardTextLarge } from './styles.js';
-import { ProfileCard } from '../../layout/ProfileCard/index.jsx';
-import { ExpensesTable } from '../../features/wallet/components/ExpensesTable/index.jsx';
+import { GridContainer, CardTextLarge } from './styles.js';
+import { ProfileCard } from '../../features/user/components/ProfileCard/index.jsx';
+import { ExpensesTable } from '../../features/wallet/components/Tables/ExpensesTable/index.jsx';
 import { Chart } from '../../components/Chart/index.jsx';
 import { useContext, useEffect } from 'react';
 import { WalletContext } from '../../features/wallet/context/index.jsx';
+import { IncomesTable } from '../../features/wallet/components/Tables/IncomesTable/index.jsx';
+import { Header } from '../../components/Header/index.jsx';
 
 export const Home = () => {
   const { getTransactions, getCurrencies } = useContext(WalletContext);
@@ -15,15 +17,15 @@ export const Home = () => {
   }, []);
 
   return (
-    <GridContainer>
-      <ExpensesTable/>
-      <ProfileCard/>
-      <CardTest>
-        <Logo/>
-      </CardTest>
-      <CardTextLarge>
-        <Chart/>
-      </CardTextLarge>
-    </GridContainer>
+      <GridContainer>
+        <Header/>
+        <ExpensesTable/>
+        <IncomesTable/>
+        <ProfileCard/>
+
+        <CardTextLarge>
+          <Chart/>
+        </CardTextLarge>
+      </GridContainer>
   );
 };

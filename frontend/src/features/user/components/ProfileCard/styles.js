@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { LuSettings2 } from 'react-icons/lu';
 import { MdOutlineKeyboardArrowDown } from 'react-icons/md';
+import { BsGraphDownArrow, BsGraphUpArrow } from 'react-icons/bs';
 
 export const CardContainer = styled.div`
   background-color: ${ ({ theme }) => theme.cardBackground };
@@ -12,8 +13,6 @@ export const CardContainer = styled.div`
   padding: 2rem;
   position: relative;
   border-radius: 20px;
-  grid-column: 2;
-  grid-row: 1;
 `;
 
 export const SettingsIcon = styled(LuSettings2)`
@@ -84,9 +83,21 @@ export const NewExpenseButton = styled.button`
   font-weight: 700;
   box-shadow: 0 0 20px 1px rgba(0,196,159,1);
   transition: all 0.3s ease-in-out;
-  
   &:hover {
     transform: scale(1.05);
     color: ${({theme}) => theme.text};
   }
+`;
+
+export const ExpenseIcon = styled(BsGraphDownArrow)`
+  width: 2.5rem;
+  height: 2.5rem;
+  color: #FF2E00;
+
+`;
+
+export const IncomeIcon = styled(BsGraphUpArrow)`
+  width: 2.5rem;
+  height: 2.5rem;
+  color: #00C49F;
 `;
