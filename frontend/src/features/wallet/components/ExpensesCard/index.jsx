@@ -3,8 +3,7 @@ import {
   DeleteIcon,
   VerticalMoreIcon,
 } from './styles.js';
-import { format } from 'date-fns';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 import { WalletContext } from '../../context/index.jsx';
 import { ExpenseModal } from '../Modal/index.jsx';
 import { FlexContainer } from '../../../../components/FlexContainer/index.jsx';
