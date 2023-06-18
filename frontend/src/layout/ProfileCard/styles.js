@@ -59,20 +59,6 @@ export const OpenCurrenciesButton = styled(MdOutlineKeyboardArrowDown)`
   ` }
 `;
 
-export const MenuContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  position: absolute;
-  top: 3rem;
-  right: .5rem;
-  background-color: ${ ({ theme }) => theme.primary };
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.45);
-  border-radius: 12px;
-  padding: 1rem 2rem;
-  z-index: 1;
-`;
-
 export const LogoutButton = styled.button`
   cursor: pointer;
   font-size: 1.5rem;
@@ -92,14 +78,15 @@ export const LogoutButton = styled.button`
 export const NewExpenseButton = styled.button`
   padding: 1rem 2.5rem;
   border-radius: 12px;
-  background-color: ${({theme}) => theme.accent};
-  color: ${({theme}) => theme.cardBackground};
+  background-color: ${({theme}) => theme.primary};
+  color: ${({theme}) => theme.background};
   font-size: 1.5rem;
   font-weight: 700;
-  transition: all 0.2s ease-in-out;
+  box-shadow: 0 0 20px 1px rgba(0,196,159,1);
+  transition: all 0.3s ease-in-out;
   
   &:hover {
-    background-color: ${({theme}) => theme.primary};
+    transform: scale(1.05);
     color: ${({theme}) => theme.text};
   }
 `;

@@ -28,11 +28,3 @@ export const DeleteIcon = styled(LuTrash2)`
   transition: opacity .2s ease-in-out;
   ${ ({ appear }) => appear === 'true' ? `opacity: 1;` : `opacity: 0; pointer-events: none;` }
 `;
-
-
-export const CardBodyRow = styled.div`
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-`;

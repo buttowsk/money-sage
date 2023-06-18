@@ -18,14 +18,14 @@ export const ModalContainer = styled.form`
   display: flex;
   flex-flow: column nowrap;
   align-items: flex-start;
-  gap: 2rem;
+  gap: 3rem;
   width: 50%;
-  max-width: 500px;
-  padding: 2rem;
+  max-width: 600px;
+  padding: 3rem 4rem;
   border-radius: 12px;
   background-color: ${ ({ theme }) => theme.cardBackground };
   color: ${ ({ theme }) => theme.text };
-  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 30px 4px rgba(0, 0, 0, 0.5);
 
   & > * {
     width: 100%;
@@ -35,10 +35,11 @@ export const ModalContainer = styled.form`
 export const CloseButton = styled(IoClose)`
   position: absolute;
   color: ${ ({ theme }) => theme.primary };
-  top: 1rem;
-  right: 1rem;
-  font-size: 3rem;
+  top: 2rem;
+  right: 2rem;
+  font-size: 5rem;
   cursor: pointer;
+  box-shadow: 0 0 10px 4px rgba(0, 0, 0, 0.3);
   transition: transform .2s ease-in-out;
 
   &:hover {
@@ -46,30 +47,33 @@ export const CloseButton = styled(IoClose)`
   }
 `;
 
-export const IncomeButton = styled.button`
-  padding: 1rem 2.5rem;
+export const TransactionType = styled.button`
+  width: 100%;
+  padding: 1.5rem 2rem;
   border-radius: 12px;
-  background-color: ${ ({ theme }) => theme.primary };
-  `;
-
-export const ExpenseButton = styled.button`
-  padding: 1rem 2.5rem;
-  border-radius: 12px;
-  background-color: ${ ({ theme }) => theme.primary};
-  ` 
-
+  border: 2px solid ${ ({ theme }) => theme.primary };
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: ${ ({ theme }) => theme.text };
+  background-color: ${ ({ theme, selected }) => selected ? theme.primary : theme.cardBackground };
+  transition: all 0.4s ease;
+  
+  &:hover {
+    box-shadow: 0 0 30px 4px rgba(0,196,159,1);
+  }
+`;
 
 export const AddButton = styled.button`
-  padding: 1rem 2.5rem;
+  padding: 1rem 2rem;
   border-radius: 12px;
-  background-color: ${ ({ theme }) => theme.accent };
+  background-color: ${ ({ theme }) => theme.primary };
   color: ${ ({ theme }) => theme.cardBackground };
-  font-size: 1.5rem;
+  font-size: 2rem;
   font-weight: 700;
   transition: all 0.2s ease-in-out;
 
   &:hover {
-    background-color: ${ ({ theme }) => theme.primary };
+    box-shadow: 0 0 30px 4px rgba(0,196,159,1);
     color: ${ ({ theme }) => theme.text };
   }
 `;
