@@ -1,6 +1,7 @@
 import { createContext, useState } from 'react';
 import { authAPI, googleAuthAPI } from '../services/auth.js';
 import { useNavigate } from 'react-router-dom';
+import { transactionsApi } from '../../wallet/services/index.js';
 
 export const AuthContext = createContext({});
 
@@ -30,6 +31,7 @@ export const AuthProvider = ({ children }) => {
       if (resp.status === 200) {
         localStorage.setItem('accessToken', accessToken);
         localStorage.setItem('refreshToken', refreshToken);
+        transactionsApi.defaults.headers.common.Authorization = `JWT ${ accessToken }`;
         setIsAuthenticated(true);
       } else {
         setIsAuthenticated(false);

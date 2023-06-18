@@ -1,8 +1,8 @@
 import axios from 'axios';
 
-const API_URL = 'https://buttowsk-supreme-space-spoon-r5p5rp949rxcx4pj-8000.preview.app.github.dev/expenses';
+const API_URL = 'http://localhost:8000/transaction';
 
-export const expensesAPI = axios.create({
+export const transactionsApi = axios.create({
   baseURL: API_URL,
   headers: {
     'Content-Type': 'application/json',
@@ -10,7 +10,7 @@ export const expensesAPI = axios.create({
   withCredentials: true,
 });
 
-export const currencyAPI = axios.create({
+export const currencyApi = axios.create({
   baseURL: 'https://economia.awesomeapi.com.br/json/all',
   headers: {
     'Content-Type': 'application/json',

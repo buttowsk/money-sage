@@ -3,14 +3,13 @@ import {
   TableContainer,
   ExpensesContainer,
 } from './styles.js';
-import { useContext, useState } from 'react';
-import { ExpenseModal } from '../Modal/index.jsx';
-import { ExpensesContext } from '../../context/index.jsx';
+import { useContext } from 'react';
+import { WalletContext } from '../../context/index.jsx';
 import { FlexContainer } from '../../../../components/FlexContainer';
 import { Text } from '../../../../components/Text';
 
 export const ExpensesTable = () => {
-  const { expenses } = useContext(ExpensesContext);
+  const { expenses } = useContext(WalletContext);
 
   return (
     <TableContainer>

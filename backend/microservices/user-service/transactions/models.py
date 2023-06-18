@@ -9,7 +9,7 @@ class Transaction(models.Model):
     tag = models.CharField(max_length=120)
     payment_type = models.CharField(max_length=120)
     exchange_rate = models.DecimalField(max_digits=999, decimal_places=2, blank=True, null=True)
-    amountConverted = models.DecimalField(max_digits=999, decimal_places=2, blank=True, null=True)
+    converted_amount = models.DecimalField(max_digits=999, decimal_places=2, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

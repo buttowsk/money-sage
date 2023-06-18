@@ -1,12 +1,19 @@
-import { ModalBackground, ModalContainer, AddButton, CloseButton, ExpenseButton, IncomeButton} from './styles.js';
+import {
+  ModalBackground,
+  ModalContainer,
+  AddButton,
+  CloseButton,
+  TransactionType,
+} from './styles.js';
 import { Input } from '../Input/index.jsx';
 import { useExpenseForm } from '../../lib/index.js';
-import { ExpensesContext } from '../../context/index.jsx';
+import { WalletContext } from '../../context/index.jsx';
 import { useContext, useEffect, useRef } from 'react';
 import { options } from '../Input/options.js';
+import { Container } from '../../../../components/FlexContainer/styles.js';
 
 export const ExpenseModal = ({ setIsOpen, expense }) => {
-  const { getExpenses, updateExpense, createExpense, currencies } = useContext(ExpensesContext);
+  const { getTransactions, updateTransaction, createTransaction, currencies } = useContext(WalletContext);
   const form = useExpenseForm();
   const modalRef = useRef();
   const { paymentTypes, tags } = options;
@@ -31,18 +38,20 @@ export const ExpenseModal = ({ setIsOpen, expense }) => {
 
   const onSubmit = async (data) => {
     if (expense) {
-      await updateExpense(expense, data);
-      await getExpenses();
+      await updateTransaction('expense', expense, data);
+      await getTransactions('expense');
       setIsOpen(false);
     } else {
-      await createExpense(data);
+      await createTransaction('expense', data);
       setIsOpen(false);
     }
   };
 
   return (
     <ModalBackground ref={ modalRef } onClick={ handleClickOutside }>
-      <CloseButton onClick={() => {setIsOpen(false)}}/>
+      <CloseButton onClick={ () => {
+        setIsOpen(false);
+      } }/>
       <ModalContainer onSubmit={ form.handleSubmit(onSubmit) }>
         <Input label="Description" name="description" register={ form.register }
                error={ form.errors.description?.message }/>
@@ -54,6 +63,10 @@ export const ExpenseModal = ({ setIsOpen, expense }) => {
                error={ form.errors.currency?.message } options={ currencies }/>
         <Input label="Tag" name="tag" register={ form.register } error={ form.errors.tag?.message }
                options={ tags }/>
+        <Container width={ '100%' } justify={ 'space-between' }>
+          <TransactionType type={ 'button' }>Expense</TransactionType>
+          <TransactionType type={ 'button' }>Income</TransactionType>
+        </Container>
         { expense ? <AddButton type={ 'submit' }>Update</AddButton> : <AddButton type={ 'submit' }>Add</AddButton> }
       </ModalContainer>
     </ModalBackground>

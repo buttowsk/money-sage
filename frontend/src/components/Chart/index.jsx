@@ -7,14 +7,14 @@ import {
 } from 'recharts';
 import { TolltipContainer } from './styles.js';
 import { useContext } from 'react';
-import { ExpensesContext } from '../../features/expenses/context/index.jsx';
+import { WalletContext } from '../../features/wallet/context/index.jsx';
+import { Text } from '../Text/index.jsx';
 
 const CustomTooltip = ({ active, payload, label }) => {
   if (active && payload && payload.length) {
     return (
       <TolltipContainer>
-        <p className="label">{ `${ label } : ${ payload[0].value }` }</p>
-
+        <Text>{ `${ label } : ${ payload[0].value }` }</Text>
       </TolltipContainer>
     );
   }
@@ -23,7 +23,7 @@ const CustomTooltip = ({ active, payload, label }) => {
 
 
 export const Chart = () => {
-  const { totalByTag } = useContext(ExpensesContext);
+  const { totalByTag } = useContext(WalletContext);
 
   return (
     <ResponsiveContainer width="100%" height="100%">

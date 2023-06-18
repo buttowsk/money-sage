@@ -13,13 +13,13 @@ import logo from '../../assets/logo.png';
 import ReactCountryFlag from 'react-country-flag';
 import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../features/authentication/context/index.jsx';
-import { ExpensesContext } from '../../features/expenses/context/index.jsx';
-import {ExpenseModal} from '../../features/expenses/components/Modal'
+import { WalletContext } from '../../features/wallet/context/index.jsx';
+import {ExpenseModal} from '../../features/wallet/components/Modal'
 
 export const ProfileCard = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { currentUser, handleLogout } = useContext(AuthContext);
-  const { totalExpenses, currencies } = useContext(ExpensesContext);
+  const { totalExpenses, currencies } = useContext(WalletContext);
   const [total, setTotal] = useState(totalExpenses);
   const [currency, setCurrency] = useState('BRL');
   const [flag, setFlag] = useState('BR');
