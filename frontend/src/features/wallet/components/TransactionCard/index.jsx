@@ -22,8 +22,8 @@ export const TransactionCard = ({ transaction, type }) => {
   return (
     <FlexContainer key={ transaction.id } direction={ 'column' } shadow={ '0 0 8px 1px rgba(0, 0, 0, 0.75)' } position={'relative'}>
       { isOpen && <ExpenseModal setIsOpen={ setIsOpen } expense={ transaction }/> }
-      { type === 'expense' ? <TransactionIcon/> : <TransactionIcon $income/> }
       <FlexContainer width={ '100%' } padding={ '2rem' } justify={ 'space-between' }>
+        { type === 'expense' ? <TransactionIcon/> : <TransactionIcon $income/> }
         <Text type={ 'span' } weight={ '700' } size={ '2rem' }>
           { transaction.description }
         </Text>
@@ -35,15 +35,15 @@ export const TransactionCard = ({ transaction, type }) => {
       </FlexContainer>
       <FlexContainer width={ '100%' } direction={ 'column' } padding={ '2rem' } gap={ '1.5rem' }>
         <FlexContainer width={ '100%' } justify={ 'space-between' }>
-          <Text weight={ '600' }>Amout</Text>
+          <Text weight={ '600' }>Quantidade</Text>
           <Text weight={ '600' }>{ transaction.amount }</Text>
         </FlexContainer>
         <FlexContainer width={ '100%' } justify={ 'space-between' }>
-          <Text weight={ '600' }>Payment type</Text>
+          <Text weight={ '600' }>Forma de pagamento</Text>
           <Text weight={ '600' }>{ transaction.payment_type }</Text>
         </FlexContainer>
         <FlexContainer width={ '100%' } justify={ 'space-between' }>
-          <Text weight={ '600' }>Currency</Text>
+          <Text weight={ '600' }>Moeda</Text>
           <Text weight={ '600' }>{ transaction.currency }</Text>
         </FlexContainer>
         <FlexContainer width={ '100%' } justify={ 'space-between' }>
@@ -51,14 +51,14 @@ export const TransactionCard = ({ transaction, type }) => {
           <Text weight={ '600' }>{ transaction.tag }</Text>
         </FlexContainer>
         <FlexContainer width={ '100%' } justify={ 'space-between' }>
-          <Text weight={ '600' }>Exchange rate</Text>
+          <Text weight={ '600' }>Taxa de câmbio</Text>
           <Text weight={ '600' }>{ transaction.exchange_rate }</Text>
         </FlexContainer>
         <FlexContainer width={ '100%' } justify={ 'space-between' }>
-          <Text weight={ '600' }>Amount converted</Text>
+          <Text weight={ '600' }>Conversão</Text>
           <Text weight={ '600' }>{ transaction.converted_amount } BRL</Text>
         </FlexContainer>
-        <Text weight={ '700' }>Created at { transaction.created_at }</Text>
+        <Text weight={ '700' }>Criado em { transaction.created_at }</Text>
       </FlexContainer>
     </FlexContainer>
   );

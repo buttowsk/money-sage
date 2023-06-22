@@ -4,11 +4,11 @@ import {
   AuthenticationCard,
   UserCreated
 } from './styles.js';
-import { FormSwitcher } from '../../features/authentication/components/FormSwitcher';
+import { FormSwitcher } from '../../components/FormSwitcher/index.jsx';
 import { useState } from 'react';
-import { SignInForm, SignUpForm } from '../../features/authentication/components/Forms';
+import { SignInForm, SignUpForm } from '../../components/Forms/index.js';
 import { useContext } from 'react';
-import { AuthContext } from '../../features/authentication/context/index.jsx';
+import { AuthContext } from '../../context/index.jsx';
 import { Navigate } from 'react-router-dom';
 
 export const Authentication = () => {
@@ -23,7 +23,7 @@ export const Authentication = () => {
     <Container>
       <AuthenticationCard>
         { userCreated && <UserCreated>Usuário criado com sucesso!</UserCreated> }
-        <Title>{ form === 'signin' ? 'Sign In' : 'Sign Up' }</Title>
+        <Title>{ form === 'signin' ? 'Bem vindo de volta!' : 'Se cadastre agora.' }</Title>
         <FormSwitcher form={ form } setForm={ setForm }/>
         { form === 'signin' ? <SignInForm/> : <SignUpForm/> }
       </AuthenticationCard>

@@ -121,24 +121,22 @@ export const ProfileCard = () => {
           </FlexContainer>
         </FlexContainer>
         <FlexContainer width={ '100%' } direction={ 'column' } align={ 'start' } margin={ '1rem 0' }>
-          <Text size={ '2.5rem' }>Gastos</Text>
+          <Text size={ '2rem' }>Gastos</Text>
           <FlexContainer>
             <ExpenseIcon/>
-            <Text size={ '2rem' }>{ expenses }</Text>
-            <Text size={ '2rem' }>{ currency }</Text>
+            <Text size={ '1.8rem' }>{ expenses } { currency }</Text>
           </FlexContainer>
         </FlexContainer>
         <FlexContainer width={ '100%' } direction={ 'column' } align={ 'start' } margin={ '1rem 0' }>
-          <Text size={ '2.5rem' }>Ganhos</Text>
+          <Text size={ '2rem' }>Ganhos</Text>
           <FlexContainer>
             <IncomeIcon/>
-            <Text size={ '2rem' }>{ incomes }</Text>
-            <Text size={ '2rem' }>{ currency }</Text>
+            <Text size={ '1.8rem' }>{ incomes } { currency }</Text>
           </FlexContainer>
         </FlexContainer>
       </FlexContainer>
-      <FlexContainer justify={ 'center' } padding={ '2rem' } width={ '100%' }>
-        <NewExpenseButton onClick={ handleNewExpenseClick }>New transaction</NewExpenseButton>
+      <FlexContainer justify={ 'center' } padding={ '2rem 1rem' } width={ '100%' }>
+        <NewExpenseButton onClick={ handleNewExpenseClick }>Nova transação</NewExpenseButton>
       </FlexContainer>
     </CardContainer>
   );

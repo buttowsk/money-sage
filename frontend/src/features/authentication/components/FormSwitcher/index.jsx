@@ -8,8 +8,8 @@ export const FormSwitcher = ({ form, setForm }) => {
 
   return (
     <SwitcherContainer form={ form }>
-      <SignIn onClick={ handleChange } type={ 'button' }>Sign In</SignIn>
-      <SignUp onClick={ handleChange } type={ 'button' }>Sign Up</SignUp>
+      <SignIn onClick={ handleChange } type={ 'button' }>Login</SignIn>
+      <SignUp onClick={ handleChange } type={ 'button' }>Cadastro</SignUp>
     </SwitcherContainer>
   );
 };

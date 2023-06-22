@@ -7,7 +7,7 @@ export const Input = ({ label, register, error, ...props }) => {
       <Label>{ label }</Label>
       <StyledInput { ...props } { ...register(props.name) }/>
       { error && <ErrorMessage>{ error }</ErrorMessage> }
-      { props.signIn && <ForgotPassword>Forgot password?</ForgotPassword> }
+      { props.signIn && <ForgotPassword>Esqueceu a senha?</ForgotPassword> }
     </InputContainer>
   );
 };

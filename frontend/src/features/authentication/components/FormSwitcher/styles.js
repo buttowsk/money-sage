@@ -19,7 +19,7 @@ export const SwitcherContainer = styled.div`
     background-color: ${ ({ theme }) => theme.cardBackground };
     border-radius: 12px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-    border: 2px solid ${ ({ theme }) => theme.accent };
+    border: 2px solid ${ ({ theme }) => theme.primary };
     z-index: 1;
     position: absolute;
     top: 0;

@@ -20,7 +20,7 @@ SECRET_KEY = 'django-insecure-#q-h&myt)co(#@w5-_8(ts!)(x9+cqlx21-(ih37_tl(s8k86#
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['user-service', 'localhost', 'localhost:5173', '172.16.0.0', 'buttowsk-supreme-space-spoon-r5p5rp949rxcx4pj-5173.preview.app.github.dev']
+ALLOWED_HOSTS = ['user-service', 'localhost', 'localhost:5173', '172.16.0.0', 'buttowsk-automatic-lamp-vjqjgq46xq6cwxrq-5173.preview.app.github.dev']
 
 # Application definition
 
@@ -102,15 +102,13 @@ CORS_ALLOWED_ORIGINS = [
     'http://localhost:8080',
     'http://localhost:5173',
     'http://172.16.0.0',
-    'https://buttowsk-supreme-space-spoon-r5p5rp949rxcx4pj-5173.preview.app.github.dev',
-    'https://buttowsk-supreme-space-spoon-r5p5rp949rxcx4pj-8000.preview.app.github.dev'
+    'https://buttowsk-automatic-lamp-vjqjgq46xq6cwxrq-5173.preview.app.github.dev',
 ]
 
 CORS_ORIGIN_WHITELIST = [
     'http://localhost:5173',
     'http://localhost:8080',
-    'https://buttowsk-supreme-space-spoon-r5p5rp949rxcx4pj-8000.preview.app.github.dev',
-    'https://buttowsk-supreme-space-spoon-r5p5rp949rxcx4pj-5173.preview.app.github.dev',
+    'https://buttowsk-automatic-lamp-vjqjgq46xq6cwxrq-5173.preview.app.github.dev',
 ]
 
 CORS_ORIGIN_ALLOW_ALL = True
@@ -186,7 +184,7 @@ DJOSER = {
     'ACTIVATION_URL': 'activate/{uid}/{token}',
     'SEND_ACTIVATION_EMAIL': False,
     'SOCIAL_AUTH_TOKEN_STRATEGY': 'djoser.social.token.jwt.TokenStrategy',
-    'SOCIAL_AUTH_ALLOWED_REDIRECT_URIS': ['http://localhost:5173/money-sage/', 'https://buttowsk-supreme-space-spoon-r5p5rp949rxcx4pj-5173.preview.app.github.dev/money-sage/'],
+    'SOCIAL_AUTH_ALLOWED_REDIRECT_URIS': ['http://localhost:5173/money-sage/', 'https://buttowsk-automatic-lamp-vjqjgq46xq6cwxrq-5173.preview.app.github.dev/money-sage/'],
     'SERIALIZERS': {
         'user_create': 'accounts.serializers.CustomUserCreateSerializer',
         'user': 'accounts.serializers.CustomUserCreateSerializer',

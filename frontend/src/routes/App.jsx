@@ -1,5 +1,6 @@
 import { Routes, Route, useLocation } from 'react-router-dom';
-import { Home, Authentication } from '../pages';
+import { Home } from '../pages/Home';
+import { Authentication } from '../features/authentication/pages/Authentication';
 import { AuthContext } from '../features/authentication/context/index.jsx';
 import { PrivateRoutes } from './PrivateRoutes.jsx';
 import { useContext, useEffect } from 'react';

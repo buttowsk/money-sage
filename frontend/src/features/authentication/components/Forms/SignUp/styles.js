@@ -17,7 +17,7 @@ export const SignUpButton = styled.button`
   font-size: 1.7rem;
   font-weight: 500;
   transition: all .4s ease-in-out;
-  border: 2px solid ${ ({ theme }) => theme.accent };
+  border: 2px solid ${ ({ theme }) => theme.primary };
 
   &:hover, &:focus {
     background-color: ${ ({ theme }) => theme.accent };

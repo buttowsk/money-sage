@@ -31,9 +31,7 @@ export const DeleteIcon = styled(LuTrash2)`
 `;
 
 export const TransactionIcon = styled(TbCircleArrowUp)`
-  position: absolute;
-  bottom: 1rem;
-  right: 1.5rem;
+ 
   width: 3rem;
   height: 3rem;
   color: #e73131;

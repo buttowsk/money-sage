@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:8000/transaction';
+const API_URL = 'https://buttowsk-automatic-lamp-vjqjgq46xq6cwxrq-8000.preview.app.github.dev/transaction';
 
 export const transactionsApi = axios.create({
   baseURL: API_URL,
