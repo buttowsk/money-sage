@@ -20,7 +20,7 @@ SECRET_KEY = 'django-insecure-#q-h&myt)co(#@w5-_8(ts!)(x9+cqlx21-(ih37_tl(s8k86#
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['user-service', 'localhost', 'localhost:5173', '172.16.0.0', 'buttowsk-automatic-lamp-vjqjgq46xq6cwxrq-5173.preview.app.github.dev']
+ALLOWED_HOSTS = ['user-service', 'localhost', 'localhost:5173', 'money-sage-production.up.railway.app', 'buttowsk-automatic-lamp-vjqjgq46xq6cwxrq-5173.preview.app.github.dev']
 
 # Application definition
 
@@ -103,12 +103,14 @@ CORS_ALLOWED_ORIGINS = [
     'http://localhost:5173',
     'http://172.16.0.0',
     'https://buttowsk-automatic-lamp-vjqjgq46xq6cwxrq-5173.preview.app.github.dev',
+    'https://money-sage-production.up.railway.app'
 ]
 
 CORS_ORIGIN_WHITELIST = [
     'http://localhost:5173',
     'http://localhost:8080',
     'https://buttowsk-automatic-lamp-vjqjgq46xq6cwxrq-5173.preview.app.github.dev',
+    'https://money-sage-production.up.railway.app'
 ]
 
 CORS_ORIGIN_ALLOW_ALL = True
