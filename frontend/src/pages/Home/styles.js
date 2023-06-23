@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const GridContainer = styled.div`
   width: 100%;
+  height: 100vh;
   max-height: 100vh;
   background-color: ${ ({ theme }) => theme.background };
   color: ${ ({ theme }) => theme.text };
