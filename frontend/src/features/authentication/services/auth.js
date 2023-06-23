@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = process.env.REACT_APP_API_URL + '/auth';
+const API_URL = 'https://money-sage-production.up.railway.app/auth';
 
 export const authAPI = axios.create({
   baseURL: API_URL,
