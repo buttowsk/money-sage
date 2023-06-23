@@ -121,8 +121,9 @@ CORS_ORIGIN_WHITELIST = [
     'https://buttowsk.github.io/money-sage/',
 ]
 
-CORS_ALLOW_CREDENTIALS = True
+CORS_ORIGIN_ALLOW_ALL = True
 
+CORS_ALLOW_CREDENTIALS = True
 
 
 AUTH_PASSWORD_VALIDATORS = [
