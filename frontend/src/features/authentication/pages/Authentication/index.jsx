@@ -4,9 +4,8 @@ import {
   AuthenticationCard,
   UserCreated
 } from './styles.js';
-import { FormSwitcher } from '../../components/FormSwitcher/index.jsx';
 import { useState } from 'react';
-import { SignInForm, SignUpForm } from '../../components/Forms/index.js';
+import { SignInForm, SignUpForm, FormSwitcher } from '../../components/Forms/index.js';
 import { useContext } from 'react';
 import { AuthContext } from '../../context/index.jsx';
 import { Navigate } from 'react-router-dom';

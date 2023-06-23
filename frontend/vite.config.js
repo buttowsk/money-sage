@@ -1,12 +1,18 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import dotenv from 'dotenv';
 
-// https://vitejs.dev/config/
+// Carrega as variáveis de ambiente
+dotenv.config();
+
 export default defineConfig({
   base: '/money-sage/',
   plugins: [react()],
   server: {
     port: 5173,
     host: '0.0.0.0'
+  },
+  define: {
+    'process.env': process.env
   }
-})
+});

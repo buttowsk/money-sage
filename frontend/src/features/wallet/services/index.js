@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'https://buttowsk-automatic-lamp-vjqjgq46xq6cwxrq-8000.preview.app.github.dev/transaction';
+const API_URL = process.env.REACT_APP_API_URL + '/transactions';
 
 export const transactionsApi = axios.create({
   baseURL: API_URL,
