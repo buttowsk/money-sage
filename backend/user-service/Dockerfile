@@ -16,6 +16,6 @@ COPY . .
 
 EXPOSE 8000
 
-CMD ["python", "manage.py", "migrate", "&&", "gunicorn", "djangoService.wsgi"]
+CMD ["gunicorn", "djangoService.wsgi"]
 
 RUN rm -rf /root/.cache
