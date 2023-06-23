@@ -66,11 +66,11 @@ export const ExpenseModal = ({ setIsOpen, expense }) => {
                options={ tags }/>
         <Container width={ '100%' } justify={ 'space-between' }>
           <TransactionType type={ 'button' } onClick={ () => setTransactionType('expense') }
-                           $active={ transactionType === 'expense' && true }>Expense</TransactionType>
+                           $active={ transactionType === 'expense' && true }>Gasto</TransactionType>
           <TransactionType type={ 'button' } onClick={ () => setTransactionType('income') }
-                           $active={ transactionType === 'income' && true }>Income</TransactionType>
+                           $active={ transactionType === 'income' && true }>Ganho</TransactionType>
         </Container>
-        { expense ? <AddButton type={ 'submit' }>Update</AddButton> : <AddButton type={ 'submit' }>Add</AddButton> }
+        { expense ? <AddButton type={ 'submit' }>Atualizar</AddButton> : <AddButton type={ 'submit' }>Adicionar</AddButton> }
       </ModalContainer>
     </ModalBackground>
   );

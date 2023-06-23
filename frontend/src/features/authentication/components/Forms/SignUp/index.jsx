@@ -39,7 +39,7 @@ export const SignUpForm = () => {
         register={ form.register }
         type={ 'text' }
         name="email"
-        placeholder="Email"
+        placeholder="example@email.com"
         label="Email"
         error={ form.errors.email?.message }
       />
@@ -47,7 +47,7 @@ export const SignUpForm = () => {
         register={ form.register }
         type={ 'password' }
         name="password"
-        placeholder="Password"
+        placeholder="Minimo 6 caracteres"
         label="Password"
         error={ form.errors.password?.message }
       />
@@ -55,7 +55,7 @@ export const SignUpForm = () => {
         register={ form.register }
         type={ 'password' }
         name="confirmPassword"
-        placeholder="Confirm password"
+        placeholder="Repita a senha"
         label="Confirm password"
         error={ form.errors.confirmPassword?.message }
       />

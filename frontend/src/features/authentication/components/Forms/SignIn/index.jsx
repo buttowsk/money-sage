@@ -30,7 +30,7 @@ export const SignInForm = () => {
         type={ 'text' }
         name="email"
         label="Email"
-        placeholder="Email"
+        placeholder="example@email.com"
         error={ form.errors.email?.message }
       />
       <Input
@@ -38,7 +38,7 @@ export const SignInForm = () => {
         type={ 'password' }
         name="password"
         label="Password"
-        placeholder="Password"
+        placeholder="Minimo 6 caracteres"
         error={ form.errors.password?.message }
         signIn={ true }
       />

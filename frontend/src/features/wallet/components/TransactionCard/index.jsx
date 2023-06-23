@@ -9,7 +9,6 @@ import { ExpenseModal } from '../Modal/index.jsx';
 import { FlexContainer } from '../../../../components/FlexContainer/index.jsx';
 import { Text } from '../../../../components/Text/index.jsx';
 
-
 export const TransactionCard = ({ transaction, type }) => {
   const [moreOptions, setMoreOptions] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
@@ -20,7 +19,8 @@ export const TransactionCard = ({ transaction, type }) => {
   };
 
   return (
-    <FlexContainer key={ transaction.id } direction={ 'column' } shadow={ '0 0 8px 1px rgba(0, 0, 0, 0.75)' } position={'relative'}>
+    <FlexContainer key={ transaction.id } direction={ 'column' } shadow={ '0 0 8px 1px rgba(0, 0, 0, 0.75)' }
+                   position={ 'relative' }>
       { isOpen && <ExpenseModal setIsOpen={ setIsOpen } expense={ transaction }/> }
       <FlexContainer width={ '100%' } padding={ '2rem' } justify={ 'space-between' }>
         { type === 'expense' ? <TransactionIcon/> : <TransactionIcon $income/> }
