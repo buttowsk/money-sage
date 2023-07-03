@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'https://money-sage-production.up.railway.app/transactions';
+const API_URL = 'https://money-sage-production.up.railway.app/transaction';
 
 export const transactionsApi = axios.create({
   baseURL: API_URL,
