@@ -73,12 +73,26 @@ export const WalletProvider = ({ children }) => {
     getCurrencies();
   }, [expenses, incomes]);
 
+  const formatDate = (date) => {
+    const dataObj = new Date(date);
+
+    const ano = dataObj.getFullYear();
+    const mes = dataObj.getMonth() + 1;
+    const dia = dataObj.getDate();
+    const hora = dataObj.getHours();
+    const minutos = dataObj.getMinutes();
+
+    return `${ dia }/${ mes }/${ ano } ${ hora }:${ minutos }`;
+  };
 
   const getTransactions = async (type) => {
     try {
       const resp = await transactionsApi.get(`/${ type }/`);
       if (resp.status === 200) {
         const data = resp.data;
+        data.forEach((item) => {
+          item.date = formatDate(item.date);
+        });
         type === 'expense' ? setExpenses(data) : setIncomes(data);
       }
     } catch (err) {
