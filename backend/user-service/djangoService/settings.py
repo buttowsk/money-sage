@@ -20,7 +20,7 @@ CORS_ALLOW_CREDENTIALS = True
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 
-DEBUG = False
+DEBUG = True
 
 
 ALLOWED_HOSTS = ['user-service', 'localhost', 'buttowsk.github.io', 'money-sage-production.up.railway.app', 'buttowsk-automatic-lamp-vjqjgq46xq6cwxrq-5173.preview.app.github.dev']
