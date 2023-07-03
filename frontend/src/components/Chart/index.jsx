@@ -73,6 +73,7 @@ export const Chart = () => {
           tickLine={false}
           axisLine={{ strokeWidth: "0" }}
           style={{ fontSize: "10px" }}
+          domain={['dataMin', 'dataMax']}
         />
         <Tooltip content={<CustomTooltip/>} />
         <Area

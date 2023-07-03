@@ -85,7 +85,7 @@ export const ProfileCard = () => {
 
       <FlexContainer>
         <Avatar src={ currentUser?.picture || logo }/>
-        <Text type={ 'span' } size={ '2rem' }>{ currentUser?.first_name }</Text>
+        <Text type={ 'span' } size={ '2rem' }>{ currentUser?.email }</Text>
       </FlexContainer>
       <FlexContainer width={ '100%' } direction={ 'column' } align={ 'start' }>
         <FlexContainer position={ 'relative' } width={ '100%' } justify={ 'space-between' }>
