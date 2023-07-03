@@ -12,6 +12,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SESSION_COOKIE_SECURE = False
 
+CORS_ORIGIN_ALLOW_ALL = True
+
+CORS_ALLOW_CREDENTIALS = True
+
 
 SECRET_KEY = os.getenv('SECRET_KEY')
 
@@ -110,7 +114,7 @@ CORS_ALLOWED_ORIGINS = [
     'http://localhost:5173',
     'https://buttowsk-automatic-lamp-vjqjgq46xq6cwxrq-5173.preview.app.github.dev',
     'https://money-sage-production.up.railway.app',
-    'https://buttowsk.github.io/money-sage/',
+    'https://buttowsk.github.io',
 ]
 
 CORS_ORIGIN_WHITELIST = [
@@ -118,12 +122,8 @@ CORS_ORIGIN_WHITELIST = [
     'http://localhost:8080',
     'https://buttowsk-automatic-lamp-vjqjgq46xq6cwxrq-5173.preview.app.github.dev',
     'https://money-sage-production.up.railway.app',
-    'https://buttowsk.github.io/money-sage/',
+    'https://buttowsk.github.io',
 ]
-
-CORS_ORIGIN_ALLOW_ALL = True
-
-CORS_ALLOW_CREDENTIALS = True
 
 
 AUTH_PASSWORD_VALIDATORS = [

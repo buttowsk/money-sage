@@ -17,15 +17,14 @@ export const Home = () => {
   }, []);
 
   return (
-      <GridContainer>
-        <Header/>
-        <ExpensesTable/>
-        <IncomesTable/>
-        <ProfileCard/>
-
-        <CardTextLarge>
-          <Chart/>
-        </CardTextLarge>
-      </GridContainer>
+    <GridContainer>
+      <Header/>
+      <ExpensesTable/>
+      <IncomesTable/>
+      <ProfileCard/>
+      <CardTextLarge>
+        <Chart/>
+      </CardTextLarge>
+    </GridContainer>
   );
 };
