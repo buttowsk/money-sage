@@ -1,7 +1,6 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import dotenv from 'dotenv';
-import process from '.eslintrc.cjs';
 
 // Carrega as variáveis de ambiente
 dotenv.config();

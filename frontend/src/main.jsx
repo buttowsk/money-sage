@@ -13,7 +13,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <BrowserRouter basename={ '/money-sage/' }>
       <ThemeProvider theme={ themes.colors }>
         <AuthProvider>
-          <ChakraProvider disableGlobalStyle>
+          <ChakraProvider disableGlobalStyle={true}>
             <GlobalStyles/>
             <App/>
           </ChakraProvider>
