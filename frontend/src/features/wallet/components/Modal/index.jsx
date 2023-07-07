@@ -12,7 +12,7 @@ import { useContext, useEffect, useRef, useState } from 'react';
 import { options } from '../Input/options.js';
 import { Container } from '../../../../components/FlexContainer/styles.js';
 
-export const ExpenseModal = ({ setIsOpen, expense }) => {
+export const ExpenseModal = ({ setIsOpen, transaction }) => {
   const [transactionType, setTransactionType] = useState('');
   const { getTransactions, updateTransaction, createTransaction, currencies } = useContext(WalletContext);
   const form = useExpenseForm();
@@ -28,18 +28,18 @@ export const ExpenseModal = ({ setIsOpen, expense }) => {
   };
 
   useEffect(() => {
-    if (expense) {
-      form.setValue('description', expense.description);
-      form.setValue('amount', expense.amount);
-      form.setValue('payment_type', expense.payment_type);
-      form.setValue('currency', expense.currency);
-      form.setValue('tag', expense.tag);
+    if (transaction) {
+      form.setValue('description', transaction.description);
+      form.setValue('amount', transaction.amount);
+      form.setValue('payment_type', transaction.payment_type);
+      form.setValue('currency', transaction.currency);
+      form.setValue('tag', transaction.tag);
     }
-  }, [expense]);
+  }, [transaction]);
 
   const onSubmit = async (data) => {
-    if (expense) {
-      await updateTransaction(transactionType, expense, data);
+    if (transaction) {
+      await updateTransaction(transactionType, transaction, data);
       await getTransactions(transactionType);
       setIsOpen(false);
     } else {
@@ -54,13 +54,13 @@ export const ExpenseModal = ({ setIsOpen, expense }) => {
         setIsOpen(false);
       } }/>
       <ModalContainer onSubmit={ form.handleSubmit(onSubmit) }>
-        <Input label="Description" name="description" register={ form.register }
+        <Input label="Descrição" name="description" register={ form.register }
                error={ form.errors.description?.message }/>
-        <Input label="Amount" name="amount" register={ form.register }
+        <Input label="Quantidade" name="amount" register={ form.register }
                error={ form.errors.amount?.message }/>
-        <Input label="Payment type" name="payment_type" register={ form.register }
+        <Input label="Forma de pagamento" name="payment_type" register={ form.register }
                error={ form.errors.payment_type?.message } options={ paymentTypes }/>
-        <Input label="Currency" name="currency" register={ form.register }
+        <Input label="Moeda" name="currency" register={ form.register }
                error={ form.errors.currency?.message } options={ currencies }/>
         <Input label="Tag" name="tag" register={ form.register } error={ form.errors.tag?.message }
                options={ tags }/>
@@ -70,7 +70,7 @@ export const ExpenseModal = ({ setIsOpen, expense }) => {
           <TransactionType type={ 'button' } onClick={ () => setTransactionType('income') }
                            $active={ transactionType === 'income' && true }>Ganho</TransactionType>
         </Container>
-        { expense ? <AddButton type={ 'submit' }>Atualizar</AddButton> : <AddButton type={ 'submit' }>Adicionar</AddButton> }
+        { transaction ? <AddButton type={ 'submit' }>Atualizar</AddButton> : <AddButton type={ 'submit' }>Adicionar</AddButton> }
       </ModalContainer>
     </ModalBackground>
   );

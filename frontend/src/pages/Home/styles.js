@@ -7,7 +7,7 @@ export const GridContainer = styled.div`
   background-color: ${ ({ theme }) => theme.background };
   color: ${ ({ theme }) => theme.text };
   display: grid;
-  grid-template-columns: repeat(2, 1fr) .5fr;
+  grid-template-columns: 1fr .2fr;
   grid-template-rows: 2.5rem 1fr 1fr;
   padding: 1.5rem;
   grid-gap: 1rem;

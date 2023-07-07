@@ -53,7 +53,7 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   *::-webkit-scrollbar-thumb {
-    background: transparent;
+    background: #19865C;
     border-radius: 0.5rem;
   }
 `;
